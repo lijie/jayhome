@@ -1,0 +1,9 @@
+<html>
+  <title>{{.Title}}</title>
+  <body>
+    {{range .Entries}}
+      <p>{{.Title}} {{.Author}} {{.Time}}</p>
+      <p>{{.Text}}</p>
+    {{end}}
+  </body>
+</html>

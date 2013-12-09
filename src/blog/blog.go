@@ -7,11 +7,13 @@ import "fmt"
 import "sort"
 import "html/template"
 import "net/http"
+import "io"
+import "time"
 
 type Index struct {
 	Title string
 	Tag string
-	Md string
+	Text string
 	Time int
 }
 
@@ -40,29 +42,57 @@ func (b *Blog) readIndex() error {
 	return nil
 }
 
-type mainTemplate struct {
-	Title, Entries string
-}
-
 type entryTemplate struct {
 	Title, Author, Time, Text string
 }
 
-func (b *Blog) showMain() error {
-	t, err := template.ParseFiles("../data/blog/temlate/main.template")
+type mainTemplate struct {
+	Title string
+	Entries []entryTemplate
+}
+
+func convertTime(inttime int) string {
+	const layout = "Jan 2, 2006 at 3:04pm (MST)"
+	t := time.Unix(int64(inttime), 0)
+	return t.Format(layout)
+}
+
+func (b *Blog) readEntry(entry *entryTemplate, idx int) {
+	entry.Title = b.indices[idx].Title
+	entry.Time = convertTime(b.indices[idx].Time)
+	buf, err := ioutil.ReadFile(b.indices[idx].Text)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	entry.Text = string(buf)
+}
+
+func (b *Blog) readBlog(data *mainTemplate, start int) {
+	b.readIndex()
+	data.Title = b.Title
+
+	i := len(b.indices)
+	data.Entries = make([]entryTemplate, i)
+	for j := 0; j < i; j++ {
+		b.readEntry(&data.Entries[j], j)
+	}
+}
+
+func (b *Blog) showMain(w io.Writer) error {
+	t, err := template.ParseFiles("../data/blog/template/main.template")
 	if err != nil {
 		fmt.Println(err)
 		return err
 	}
 	var data mainTemplate
-	data.Title = "TestBlog"
-	data.Entries = "TestEntries"
-	t.Execute(os.Stdout, data)
+	b.readBlog(&data, -1)
+	t.Execute(w, data)
 	return nil
 }
 
 func (b *Blog) Serve(w http.ResponseWriter, req *http.Request) error {
-	return b.showMain()
+	return b.showMain(w)
 }
 
 func NewBlog(title string, indexPath string) *Blog {
@@ -73,3 +103,7 @@ func NewBlog(title string, indexPath string) *Blog {
 	return b
 }
 
+func TestBlog() {
+	b := NewBlog("TestBlog", "../data/blog/index.json")
+	b.showMain(os.Stderr)
+}
