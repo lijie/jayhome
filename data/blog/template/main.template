@@ -1,9 +1,51 @@
+<!DOCTYPE html>
 <html>
-  <title>{{.Title}}</title>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}}</title>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  </head>
   <body>
-    {{range .Entries}}
-      <p>{{.Title}} {{.Author}} {{.Time}}</p>
-      <p>{{.Text}}</p>
-    {{end}}
+    <script src="jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <div class="container">
+      <div class="row show-grid">
+	<div class="col-md-2"></div>
+	<div class="col-md-5">
+	  <br>
+	  <br>
+	  <h1>LI JIE</h1>
+	  <br>
+	  <br>
+	</div>
+	<div class="col-md-5">
+	  <br>
+	  <br>
+	  <br>
+	  <ul class="nav nav-pills">
+	    <li class="disabled"><a href="#">Home</a></li>
+	    <li class="disabled"><a href="#">About</a></li>
+	  </ul>
+	</div>
+      </div>
+      <div class="row show-grid">
+	<div class="col-md-2"></div>
+	<div class="col-md-6">
+	  {{range .Entries}}
+	  <h3>{{.Title}}</h3>
+	  <h5>{{.Author}}</h5>
+	  <h5>{{.Time}}</h5>
+	  <p class="lead">{{.Text}}</p>
+	  {{end}}
+	</div>
+	<div class="col-md-3">
+	  hello
+	</div>
+	<div class="col-md-1"></div>
+      </div>
+    </div>
+
   </body>
 </html>

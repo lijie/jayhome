@@ -47,7 +47,8 @@ func (b *Blog) readIndex() error {
 }
 
 type entryTemplate struct {
-	Title, Author, Time, Text string
+	Title, Author, Time string
+	Text template.HTML
 }
 
 type mainTemplate struct {
@@ -75,7 +76,7 @@ func (b *Blog) readEntry(entry *entryTemplate, idx int) {
 		fmt.Println(err)
 		return
 	}
-	entry.Text = string(buf)
+	entry.Text = template.HTML(buf)
 }
 
 // read all blogs from time start
@@ -91,9 +92,9 @@ func (b *Blog) readBlog(data *mainTemplate, start int) {
 
 // create blog cache
 func (b *Blog) blogCache() string {
-	if (b.content != "") {
-		return b.content
-	}
+//	if (b.content != "") {
+//		return b.content
+//	}
 
 	b.mu.Lock()
 	defer b.mu.Unlock()
