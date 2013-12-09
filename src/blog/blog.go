@@ -9,6 +9,8 @@ import "html/template"
 import "net/http"
 import "io"
 import "time"
+import "bytes"
+import "sync"
 
 type Index struct {
 	Title string
@@ -22,6 +24,8 @@ type Blog struct {
 	IndexPath string
 
 	indices []Index
+	content string
+	mu sync.Mutex
 }
 
 type byTime []Index
@@ -51,12 +55,18 @@ type mainTemplate struct {
 	Entries []entryTemplate
 }
 
+type tagTemplate struct {
+	Tags []string
+}
+
+// unix timestamp to string
 func convertTime(inttime int) string {
 	const layout = "Jan 2, 2006 at 3:04pm (MST)"
 	t := time.Unix(int64(inttime), 0)
 	return t.Format(layout)
 }
 
+// read one blog
 func (b *Blog) readEntry(entry *entryTemplate, idx int) {
 	entry.Title = b.indices[idx].Title
 	entry.Time = convertTime(b.indices[idx].Time)
@@ -68,8 +78,8 @@ func (b *Blog) readEntry(entry *entryTemplate, idx int) {
 	entry.Text = string(buf)
 }
 
+// read all blogs from time start
 func (b *Blog) readBlog(data *mainTemplate, start int) {
-	b.readIndex()
 	data.Title = b.Title
 
 	i := len(b.indices)
@@ -79,24 +89,39 @@ func (b *Blog) readBlog(data *mainTemplate, start int) {
 	}
 }
 
-func (b *Blog) showMain(w io.Writer) error {
+// create blog cache
+func (b *Blog) blogCache() string {
+	if (b.content != "") {
+		return b.content
+	}
+
+	b.mu.Lock()
+	defer b.mu.Unlock()
+
 	t, err := template.ParseFiles("../data/blog/template/main.template")
 	if err != nil {
 		fmt.Println(err)
-		return err
+		return ""
 	}
 	var data mainTemplate
 	b.readBlog(&data, -1)
-	t.Execute(w, data)
+
+	output := new(bytes.Buffer)
+	t.Execute(output, data)
+	b.content, _ = output.ReadString(0)
+	return b.content
+}
+
+// call by http server
+func (b *Blog) Serve(w io.Writer, req *http.Request) error {
+	io.WriteString(w, b.blogCache())
 	return nil
 }
 
-func (b *Blog) Serve(w http.ResponseWriter, req *http.Request) error {
-	return b.showMain(w)
-}
-
 func NewBlog(title string, indexPath string) *Blog {
-	b := &Blog{title, indexPath, nil}
+	b := new(Blog)
+	b.Title = title
+	b.IndexPath = indexPath
 	if err := b.readIndex(); err != nil {
 		return nil
 	}
@@ -105,5 +130,5 @@ func NewBlog(title string, indexPath string) *Blog {
 
 func TestBlog() {
 	b := NewBlog("TestBlog", "../data/blog/index.json")
-	b.showMain(os.Stderr)
+	io.WriteString(os.Stdout, b.blogCache())
 }
