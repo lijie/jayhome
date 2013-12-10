@@ -19,7 +19,7 @@ func BlogServer(w http.ResponseWriter, req *http.Request) {
 	if bb == nil {
 		blogMutex.Lock()
 		if bb == nil {
-			bb = blog.NewBlog("TestBlog", "../data/blog/index.json")
+			bb = blog.NewBlog("LI JIE", "../data/blog/index.json")
 		}
 		blogMutex.Unlock()
 	}
@@ -32,7 +32,8 @@ func main() {
 	flag.Parse()
 	// serve static under an alternate URL
 	http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir("../data/static"))))
-	http.HandleFunc("/b", BlogServer)
+	// http.HandleFunc("/b", BlogServer)
+	http.HandleFunc("/b/", BlogServer)
 	http.HandleFunc("/hello", HelloServer)
 
 	err := http.ListenAndServe(fmt.Sprintf(":%d", *port), nil)
