@@ -99,7 +99,7 @@ func (b *Blog) blogCache() string {
 	b.mu.Lock()
 	defer b.mu.Unlock()
 
-	t, err := template.ParseFiles("../data/blog/template/main.template")
+	t, err := template.ParseFiles("../data/blog/template/main2.template")
 	if err != nil {
 		fmt.Println(err)
 		return ""
