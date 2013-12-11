@@ -1,0 +1,26 @@
+[
+{
+	"title": "Solidot",
+	"tag": "",
+	"url": "http://solidot.org.feedsportal.com/c/33236/f/556826/index.rss",
+	"id": 0
+},
+{
+	"title": "cnbeta",
+	"tag": "",
+	"url": "http://cnbeta.feedsportal.com/c/34306/f/624776/index.rss",
+	"id": 1
+},
+{
+	"title": "Hack News",
+	"tag": "",
+	"url": "https://news.ycombinator.com/rss",
+	"id": 2
+},
+{
+	"title": "腾讯新闻",
+	"tag": "",
+	"url": "http://news.163.com/special/00011K6L/rss_newstop.xml",
+	"id": 3
+}
+]

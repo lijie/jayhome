@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>RSSReader</title>
+    <meta name="if:文章显示摘要" content="1"/>
+    <meta name="if:固定导航区" content="0"/>
+    <meta name="if:显示头像" content="1"/>
+    <meta name="if:圆形头像" content="0"/>
+
+    <meta name="image:右侧背景" content="http://img.ph.126.net/YSquK5jS90n6G-Kp58YUEg==/6597088458353676793.png" />
+    <meta name="color:右侧背景" content="#222"/>
+    <meta name="color:左侧背景" content="#f8f8f8"/>
+    <meta name="color:博客标题" content="#888"/>
+    <meta name="color:个人描述" content="#888"/>
+    <meta name="color:导航链接" content="#888"/>
+    <meta name="color:导航链接状态" content="#000"/>
+    <meta name="color:内容文字" content="#888"/>
+    <meta name="color:内容链接" content="#666"/>
+    <meta name="color:内容链接状态" content="#fff"/>
+
+    <meta name="group1:" content="分页式浏览#无限加载浏览|分页式浏览"/>
+    <meta name="group2:" content="博客名称字号：小#博客名称字号：小|博客名称字号：中|博客名称字号：大"/>
+    <meta name="group3:" content="内容宽度500px#内容宽度500px|内容宽度600px|内容宽度700px|内容宽度800px|内容宽度900px|内容宽度自适应"/>
+
+    <link type="text/css" rel="stylesheet" href="../reader/style.css">
+    <style>
+body{background:url(../blog/image/bg.png) repeat fixed 0 0;}
+body{background-color:#222;}
+.g-sd{background:#f8f8f8;}
+/* 内容文字颜色 */
+body,.m-cmthot,.m-post .ctc .ttl a,.m-pager a{color:#888;}
+.m-post .ctc blockquote,.notes blockquote{border-color:#888;}
+/* 内容链接颜色 */
+a,.m-cmthot a,.m-cmthot a:hover{color:#666;}
+/* 内容链接状态颜色 */
+a:hover,.m-post .ctc .ttl a:hover,.m-pager .active,.m-pager a:hover{color:#fff;}
+
+/* 博客标题 颜色 */
+.m-ttl a,.m-ttl a:hover{color:#888;}
+/* 个人描述 颜色 */
+.m-about,.m-cprt,.m-cprt a,.m-cprt a:hover{color:#888;}
+/* 导航链接 颜色 */
+.m-nav a{color:#888;}
+/* 导航链接状态 颜色 */
+.m-nav a:hover,.m-sch .txt{color:#000;}
+.m-ttl{font-size:24px;letter-spacing:1px;line-height:36px;}
+    </style>
+  </head>
+  <body class="p-homepage">
+    <div class="g-doc box">
+      <div class="g-sd">
+	<div class="g-sdc box">
+	  <!-- 显示头像时，才有 -->
+          
+	  <div class="m-hdimg">
+	    <a class="hdimg img" href="/">
+	      <img src="" width="100" height="100" />
+	    </a>
+	  </div>
+          
+	  <!-- “个人信息” -->
+	  
+	  <h1 class="m-ttl">
+	    <a class="ttl" href="/">LI JIE</a>
+	  </h1>
+	  <ul class="m-nav">
+	    {{range .Indices}}
+	    <li><a href="{{.Id}}">{{.Title}}</a></li>
+	    {{end}}
+	    <!-- Search -->
+	    <li class="m-sch">
+	      <a id="j-lnksch" href="#">搜索</a>
+	      <form id="j-schform" class="form" method="get" action="/search">
+		<input type="text" name="q" class="txt"/>
+	      </form>
+	    </li>
+	  </ul>
+	  <p class="m-cprt">&copy;&nbsp;LiJie&nbsp;|&nbsp;Powered by Go</p>
+	</div>
+      </div>
+      
+      <div class="g-mn">
+	<div class="g-mnc box">
+	  <div class="m-postlst">
+	    {{range .ItemList}}
+	    <div class="m-post  m-post-txt m-post-leftimg  ">
+	      <div class="postinner">
+		<div class="ct">
+		  <div class="ctc box">
+		    <!-- title -->
+		    <h2 class="ttl"><a href="{{.Link}}">{{.Title}}</a></h2>
+		    <!-- image -->
+		    <!--
+		    <a class="img thumbnail" href="">
+		      <img src="" />
+		    </a>
+		    -->
+		    <!-- text -->
+		    <div class="txtcont">
+		      {{.Description}}
+		    </div>
+		    <!-- info -->
+		  </div>
+		</div>
+		<div class="info box">
+		  <!--a class="date">时间　</a->
+		  <!--a class="hot">热度　224</a-->
+		</div>
+	      </div>
+	    </div>
+	    {{end}}
+
+	    <!--
+		图片
+	    <div class="m-post m-post-img   ">
+	      <div class="postinner">
+		<div class="ct">
+		  <div class="ctc box">
+		    <div class="pic">
+		      <a class="img" href="http://loftertxt.lofter.com/post/138d_17f33">
+			<img src="http://img.ph.126.net/qhciL1XK05FjNb-oZli1LQ==/2703004201369315869.jpg" />
+			</a>
+		      </div>
+		    <div class="text">
+		      <p>没有文字，多么孤单</p>
+		      </div>
+		    </div>
+		  </div>
+		<div class="info box">
+		  <a class="date" href="http://loftertxt.lofter.com/post/138d_17f33">时间　2011/09/21</a>
+		  <a class="hot" href="http://loftertxt.lofter.com/post/138d_17f33">热度　367</a>
+		  </div>
+		</div>
+	      </div>
+	    -->
+
+	  </div>
+	</div>
+      </div>
+    </div>
+
+<script type="text/javascript">
+var infTag = false;
+var mWidth = 1040;
+</script>
+<script type="text/javascript" src="../blog/jquery-1.6.2.min.js" ></script>
+<script type="text/javascript" src="../blog/infscroll.js" ></script>
+<script type="text/javascript" src="../blog/callinfscroll.js" ></script>
+
+  </body>
+</html>
