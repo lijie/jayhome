@@ -22,5 +22,11 @@
 	"tag": "",
 	"url": "http://news.163.com/special/00011K6L/rss_newstop.xml",
 	"id": 3
+},
+{
+	"title": "reddit programming",
+	"tag": "",
+	"url": "http://www.reddit.com/r/programming/.rss",
+	"id": 4
 }
 ]

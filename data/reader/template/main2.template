@@ -8,7 +8,7 @@
     <meta name="if:显示头像" content="1"/>
     <meta name="if:圆形头像" content="0"/>
 
-    <meta name="image:右侧背景" content="http://img.ph.126.net/YSquK5jS90n6G-Kp58YUEg==/6597088458353676793.png" />
+    <meta name="image:右侧背景" content="../blog/image/bg.png" />
     <meta name="color:右侧背景" content="#222"/>
     <meta name="color:左侧背景" content="#f8f8f8"/>
     <meta name="color:博客标题" content="#888"/>
