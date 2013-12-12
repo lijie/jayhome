@@ -53,7 +53,7 @@ func (b byId) Less(i, j int) bool { return b[i].Id < b[j].Id }
 
 func (r *Reader) readIndex() error {
 	buf, _ := ioutil.ReadFile(r.IndexPath)
-	fmt.Println(string(buf))
+	// fmt.Println(string(buf))
 
 	err := json.Unmarshal(buf, &r.indices)
 	if err != nil {
@@ -83,7 +83,7 @@ func (r *Reader) fetchContent(idx *Index) {
 		fmt.Printf("ReadAll %s, err %v\n", idx.Url, err)
 		return
 	}
-	idx.timeout = time.Now().Add(time.Second * 86400)
+	idx.timeout = time.Now().Add(time.Second * 3600)
 }
 
 func (r *Reader) ReadRSS(w io.Writer, id int) {
@@ -93,7 +93,7 @@ func (r *Reader) ReadRSS(w io.Writer, id int) {
 	r.fetchContent(idx)
 	fmt.Printf("buf size %d\n", len(idx.content))
 	xml.Unmarshal(idx.content, &v)
-	fmt.Println(v)
+	// fmt.Println(v)
 	var data DataSet
 	data.ItemList = v.Channel.ItemList
 	data.Indices = r.indices
