@@ -57,6 +57,7 @@ type entryTemplate struct {
 type mainTemplate struct {
 	Title string
 	Entries []entryTemplate
+	IsMain bool
 }
 
 type tagTemplate struct {
@@ -119,12 +120,13 @@ func (b *Blog) blogCache() string {
 	b.mu.Lock()
 	defer b.mu.Unlock()
 
-	t, err := template.ParseFiles("../data/blog/template/main2.template")
+	t, err := template.ParseFiles("../data/blog/template/main3.template")
 	if err != nil {
 		fmt.Println(err)
 		return ""
 	}
 	var data mainTemplate
+	data.IsMain = true
 	b.readBlog(&data, -1, 50)
 
 	output := new(bytes.Buffer)
@@ -137,12 +139,13 @@ func (b *Blog) readOneBlog(stamp int) string {
 	b.mu.Lock()
 	defer b.mu.Unlock()
 
-	t, err := template.ParseFiles("../data/blog/template/main2.template")
+	t, err := template.ParseFiles("../data/blog/template/main3.template")
 	if err != nil {
 		fmt.Println(err)
 		return ""
 	}
 	var data mainTemplate
+	data.IsMain = false
 	b.readBlog(&data, stamp, 1)
 
 	output := new(bytes.Buffer)

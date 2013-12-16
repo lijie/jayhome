@@ -1,14 +1,37 @@
 [
 {
+	"title": "计算机体系结构",
+	"tag": "",
+	"text": "../data/blog/text/computer_architecture.txt",
+	"update": 0,
+	"time": 1387183533
+},
+{
+	"title": "深入浅出统计学",
+	"tag": "",
+	"text": "../data/blog/text/head_first_statistics.txt",
+	"update": 0,
+	"time": 1387183532
+},
+{
+	"title": "Machine Learning in Action",
+	"tag": "",
+	"text": "../data/blog/text/machine_learning_in_action.txt",
+	"update": 0,
+	"time": 1387183531
+},
+{
 	"title": "滕王阁序",
 	"tag": "",
 	"text": "../data/blog/text/first.txt",
+	"update": 0,
 	"time": 1386264895
 },
 {
 	"title": "Test title2",
 	"tag": "",
 	"text": "../data/blog/text/second.txt",
+	"update": 0,
 	"time": 1386260371
 }
 ]
