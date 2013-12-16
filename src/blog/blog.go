@@ -19,6 +19,7 @@ type Index struct {
 	Tag string
 	Text string
 	Time int
+	Summary string
 }
 
 type Blog struct {
@@ -49,7 +50,7 @@ func (b *Blog) readIndex() error {
 }
 
 type entryTemplate struct {
-	Title, Author, Time string
+	Title, Author, Time, Summary string
 	Text template.HTML
 	UnixTime int
 }
@@ -76,6 +77,7 @@ func (b *Blog) readEntry(entry *entryTemplate, idx int) {
 	entry.Title = b.indices[idx].Title
 	entry.UnixTime = b.indices[idx].Time
 	entry.Time = convertTime(b.indices[idx].Time)
+	entry.Summary = b.indices[idx].Summary
 	buf, err := ioutil.ReadFile(b.indices[idx].Text)
 	if err != nil {
 		fmt.Println(err)

@@ -1,36 +1,57 @@
 [
 {
+	"title": "吃货的哲学",
+	"tag": "",
+	"summary": "吃顿好的 人生观都会改变",
+	"text": "../data/blog/md/let_us_eat.txt",
+	"update": 0,
+	"time": 1387207689
+},
+{
+	"title": "programming in Go",
+	"tag": "",
+	"summary": "Go编程的一些经验记录",
+	"text": "../data/blog/md/programming_in_go.txt",
+	"update": 0,
+	"time": 1387202751
+},
+{
 	"title": "计算机体系结构",
 	"tag": "",
-	"text": "../data/blog/text/computer_architecture.txt",
+	"summary": "计算机体系结构 量化研究方法 读书笔记.",
+	"text": "../data/blog/md/computer_architecture.txt",
 	"update": 0,
 	"time": 1387183533
 },
 {
 	"title": "深入浅出统计学",
 	"tag": "",
-	"text": "../data/blog/text/head_first_statistics.txt",
+	"summary": "深入浅出统计学 读书笔记.",
+	"text": "../data/blog/md/head_first_statistics.txt",
 	"update": 0,
 	"time": 1387183532
 },
 {
 	"title": "Machine Learning in Action",
 	"tag": "",
-	"text": "../data/blog/text/machine_learning_in_action.txt",
+	"summary": "Machine Learning in Action 读书笔记.",
+	"text": "../data/blog/md/machine_learning_in_action.txt",
 	"update": 0,
 	"time": 1387183531
 },
 {
 	"title": "滕王阁序",
 	"tag": "",
-	"text": "../data/blog/text/first.txt",
+	"summary": "for test",
+	"text": "../data/blog/md/first.txt",
 	"update": 0,
 	"time": 1386264895
 },
 {
 	"title": "Test title2",
 	"tag": "",
-	"text": "../data/blog/text/second.txt",
+	"summary": "for test",
+	"text": "../data/blog/md/second.txt",
 	"update": 0,
 	"time": 1386260371
 }

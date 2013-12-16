@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{.Title}}</title>
+    <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  </head>
+<style>
+body {
+font-size: 14px;
+padding: 10px;
+line-height: 1.5;
+font-family: 'Myriad Pro';
+}
+.head {
+padding: 5px;
+}
+.time {
+font-size: 10px;
+color: #bbb;
+}
+.title {
+font-weight: bold;
+font-size: 16px;
+}
+.entry {
+padding: 5px;
+}
+.summary {
+font-size: 12px;
+color: #aaa;
+text-indent: 10px;
+}
+.text {
+max-width: 700px;
+}
+.detail_area {
+padding: 5px;
+}
+.comment_area {
+padding: 5px;
+border: 1px solid #bbb;
+max-width: 700px;
+}
+blockquote {
+border-left: 4px solid blue;
+padding: 2px 2px 2px 5px;
+}
+</style>
+  <body>
+    <div class="head">
+      Thoughts, reading notes and links about computer programming, by Li Jie.
+    </div>
+    <div class="">
+      {{if .IsMain}}
+      <div class="">
+	<h3>Table of Contents</h3>
+	{{range .Entries}}
+	<div class="entry">
+	  <span class="title"><a href="{{.UnixTime}}">{{.Title}}</a></span>
+	  <span class="time">{{.Time}}</span>
+	  <div class="summary">{{.Summary}}</div>
+	</div>
+	{{end}}
+      </div>
+      {{else}}
+      <div class="detail_area">
+	{{range .Entries}}
+	<div class="title">{{.Title}}</div>
+	<div class="time">{{.Time}}</div>
+	<div class="text">{{.Text}}</div>
+	<div class="comment_area">
+	  comments here
+	</div>
+	{{end}}
+      </div>
+      {{end}}
+    </div>
+  </body>
+</html>
