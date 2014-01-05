@@ -42,15 +42,23 @@ func ReaderServer(w http.ResponseWriter, req *http.Request) {
 }
 
 var port = flag.Int("port", 80, "default port")
+var rootDir = flag.String("rootdir", "", "default root dir")
 
 func main() {
 	flag.Parse()
-	// serve static under an alternate URL
-	http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir("../data/static"))))
-	// http.HandleFunc("/b", BlogServer)
-	http.HandleFunc("/b/", BlogServer)
-	http.HandleFunc("/r/", ReaderServer)
-	http.HandleFunc("/hello", HelloServer)
+
+	// run for jayhome
+	if *rootDir == "" {
+		// serve static under an alternate URL
+		http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir("../data/static"))))
+		// http.HandleFunc("/b", BlogServer)
+		http.HandleFunc("/b/", BlogServer)
+		http.HandleFunc("/r/", ReaderServer)
+		http.HandleFunc("/hello", HelloServer)
+	} else {
+		// run for SimpleHttpd
+		http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir(*rootDir))))
+	}
 
 	err := http.ListenAndServe(fmt.Sprintf(":%d", *port), nil)
 	if err != nil {
