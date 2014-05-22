@@ -1,5 +1,13 @@
 [
 {
+	"title": "Redis",
+	"tag": "",
+	"summary": "Redis相关",
+	"text": "../data/blog/md/redis.txt",
+	"update": 0,
+	"time": 1400645494
+},
+{
 	"title": "吃货的哲学",
 	"tag": "",
 	"summary": "吃顿好的 人生观都会改变",
