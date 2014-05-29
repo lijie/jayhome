@@ -10,18 +10,40 @@
 
 kv的扩展，v是一个链表，链表的常见操作都可以使用
 
+v使用ziplist
+
 #### Hash
 
 kv的扩展，v是一个字典，类似mongodb的文档
+
+v使用dict
 
 #### Set
 
 kv的扩展，v是一个类似C++中的set，唯一且可快速查找
 
+v使用dict或者intset
+
 #### Sorted Set
 
 kv的扩展，v是一个排序的set，排序的key是额外指定的一个score。
 内部实现上，set还是使用的dict，并额外将数据插入一份到一个skiplist实现排序
+
+v使用ziplist 或者 dict+zsklist
+
+#### HyperLogLog
+
+一种用于统计的数据结构
+可以估计整个空间不重复数据的数目
+
+#### pub/sub
+
+pub/sub 跟zookeeper的功能非常相似, 在redis上可以建立一个或者多个channel,
+client可以往channel上发布message, 其他client可以监听这个channel, 监听者
+能都能收到发布者发布的数据.
+
+pub/sub在分布式系统中很常见, 常常用来做分布式系统的选举, 同步等.
+
 
 ### 内部存储结构
 
@@ -32,14 +54,28 @@ redis最重要的数据结构，是一个可自动扩展的hash-table
 发生hash扩展时，会new一个1，然后逐步将0中的entry迁移到1中，
 完成迁移后，释放掉旧的，把新的赋值给0
 
+dict的每次expand都会将桶的数量double.
+
 dict的迁移不是异步的，而是一旦需要迁移时，每次访问该dict，
 就完成一个slot的迁移。
 
 redis中，几乎所有支持快速查询的数据都是用dict来存储的。
 
-#### ziplist
+#### ziplist, intset, zipmap
 
-一个经过压缩的双向链表
+ziplist是一个比较节省空间的双向“链表”
+实际上名字虽然是链表, 但一个ziplist在内存中是连续的, 可以像双向链表一个使用,
+但在ziplist中插入数据是需要做memmove的.
+因为不保存指针, 然后一些表示长度的字段也用了5B表示法, 相对于一般双向链表, 它更省空间.
+但是性能上的开销也要大得多.
+
+zipmap在追求zip的道路上走得过头导致出现了明显的性能问题, 且修改会出现兼容性问题.
+所以zipmap在目前的redis中已经被废弃.
+
+intset在构造set时, 如果发现数据是int, short, 或者byte长度, 会根据实际长度优化使用空间.
+但如果新insert的数据长度大于之前的预期, 就需要重新构造整个set.
+
+redis中所有为了节省空间而设计的list, set, map都不适合大量item的存储.
 
 #### zsklist
 
@@ -57,7 +93,7 @@ redis的协议有一个设计要点是可读，所以它可以说是一种文本
 
 * 如何传递二进制数据?
 
-#### pub/sub模型
+协议设计上有传递数据长度, 这样可以准备传输二进制数据.
 
 ### 部署和容灾
 
@@ -66,8 +102,20 @@ redis的协议有一个设计要点是可读，所以它可以说是一种文本
 redis支持Master-Slave模型
 
 * 最多多少个Slave?
+
+设计上这个没有上限，但slave越多master的同步压力越大。
+redis还支持网状结构，slave可以再拥有自己的slave。
+
 * 同步延时?
+
+redis采取异步同步策略，slave与master始终会有同步延时。
+redis会经可能快的同步数据。
+
 * Master写成功就算成功?还是需要所有或者部分Slave同步成功才算成功?
+
+redis采取了一个折中的策略：
+1. master成功就算成功
+2. 可以配置限制条件：如果slave的数量小于N, 或者slave与master的ping大于M, 则写操作失败.
 
 #### 数据持久化
 
@@ -108,6 +156,15 @@ cluster会返回一个redirect, 告诉客户端正确的地址.
 ### 高级应用
 
 #### LRU Cache
+
+redis可以配置为一个lru cache服务, 当使用的内存数量超过指定的max值后, 会启用制定的lru策略
+
+1. 不回收, 这时写操作会返回失败
+2. allkey-lru, 对db中所有的key做lru, 淘汰旧的数据
+3. volatile-lru, 支队设置了expire的key做lru
+4. allkey-random, 对所有的key做随机删除
+5. volatile-random, 对设置了expire的key做随机删除
+6. volatile-ttl, 
 
 #### 分布式锁
 
