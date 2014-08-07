@@ -1,5 +1,13 @@
 [
 {
+	"title": "Effective Go",
+	"tag": "",
+	"summary": "Go",
+	"text": "../data/blog/md/effective_go.txt",
+	"update": 0,
+	"time": 1401362269
+},
+{
 	"title": "Redis",
 	"tag": "",
 	"summary": "Redis相关",
