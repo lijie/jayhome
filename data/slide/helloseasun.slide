@@ -26,7 +26,7 @@ lijie3@kingsoft.com
 
 - 单片机嵌入式开发
 
-- 大型互联网服务后台开发
+- 互联网服务后台开发
 
 - 游戏开发
 
@@ -49,7 +49,7 @@ lijie3@kingsoft.com
 
 * 原理图
 
-.link http://www.qucosa.de/fileadmin/data/qucosa/documents/5550/data/atmega8_demoboard.png
+.link http://www.dqjsw.com.cn/uploads/allimg/111014/1210142121-0.jpg
 
 * 单片机下的"并行"
 
@@ -178,6 +178,8 @@ Pcsx2和dolphin都有SSE4.x的插件来提升性能.
 - 了解新功能
 
 * 奇怪的RST包
+
+.image slide_files/tcp.jpg
 
 * 一些你可能不知道的内核功能
 
