@@ -8,6 +8,7 @@ import "reader"
 import "fmt"
 import "flag"
 import "sync"
+import "briabby"
 
 var bb *blog.Blog
 var blogMutex sync.Mutex
@@ -51,6 +52,7 @@ func main() {
 	if *rootDir == "" {
 		// serve static under an alternate URL
 		http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir("../data/static"))))
+		http.Handle("/briabby/", http.StripPrefix("/briabby/", http.FileServer(http.Dir("../data/briabby"))))
 		// http.HandleFunc("/b", BlogServer)
 		http.HandleFunc("/b/", BlogServer)
 		http.HandleFunc("/r/", ReaderServer)
@@ -60,6 +62,8 @@ func main() {
 		http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir(*rootDir))))
 	}
 
+	briabby.InitBriabby("/briabby/")
+	
 	err := http.ListenAndServe(fmt.Sprintf(":%d", *port), nil)
 	if err != nil {
 		log.Fatal("fatal %p", err)
