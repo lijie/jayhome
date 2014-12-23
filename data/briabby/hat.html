@@ -91,13 +91,17 @@
 	  <div class="jumbotron">
 	    <img src="awesome_hats_title.png" />
 	  </div>
-	  <div class="row">
+	  <div class="row" align="center">
 	    {{range .ItemList}}
 	    <div class="col-xs-6 col-lg-4">
-	      <h2>{{.Title}}</h2>
-	      <img src="{{.Image}}" />
-	      <p>{{.Desc}}</p>
-	      <p><a class="btn btn-default" href="#" role="button">Add to Cart &raquo;</a></p>
+	      <div class="thumbnail">
+		<h2>{{.Name}}</h2>
+		<a href="#" data-toggle="modal" data-target="#myModal">
+		  <img src="{{.ImageSmall}}" style="height:200px;"/>
+		</a>
+		<p>{{.Desc}}</p>
+		<p><a class="btn btn-default" href="#" role="button">Add to Cart &raquo;</a></p>
+	      </div>
 	    </div><!--/.col-xs-6.col-lg-4-->
 	    {{end}}
 	  </div><!--/row-->
@@ -146,7 +150,7 @@
       <nav>
 	<ul class="pagination">
 	  <li><a href="#"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
-	  <li><a href="#">1</a></li>
+	  <li><a href="hat?page=1">1</a></li>
 	  <li><a href="#">2</a></li>
 	  <li><a href="#">3</a></li>
 	  <li><a href="#">4</a></li>
@@ -164,6 +168,24 @@
     </div><!--/.container-->
 
 
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+	<div class="modal-content">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	    <h4 class="modal-title" id="myModalLabel">Big Image Preview</h4>
+	  </div>
+	  <div class="modal-body">
+	    ...
+	  </div>
+	  <div class="modal-footer">
+	    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	  </div>
+	</div>
+      </div>
+    </div>
+    
     <!-- Bootstrap core JavaScript
 	 ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
