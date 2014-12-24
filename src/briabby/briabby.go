@@ -23,6 +23,8 @@ type HatData struct {
 }
 
 type HatDataSet struct {
+	CurrentPage int
+	MaxPage int
 	ItemList []*HatItem
 }
 
@@ -85,6 +87,8 @@ func HandleHat(w http.ResponseWriter, r *http.Request) {
 
 	ds := &HatDataSet{
 		ItemList: hatdata.getPage(page),
+		CurrentPage: page,
+		MaxPage: (len(hatdata.ItemList) + 8) / 9,
 	}
 
 	if err = t.Execute(w, ds); err != nil {
