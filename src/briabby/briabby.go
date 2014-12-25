@@ -9,9 +9,20 @@ import (
 	"encoding/csv"
 )
 
+const (
+	CSVHatID = iota
+	CSVHatPromotion
+	CSVHatName
+	CSVHatDesc
+	CSVHatSmallImage
+	CSVHatBigImage
+	CSVHatPrice
+)
+
 type HatItem struct {
 	ID         int
 	Name       string
+	Promotion  int
 	ImageSmall string
 	ImageBig   string
 	Desc       string
@@ -20,25 +31,22 @@ type HatItem struct {
 
 type HatData struct {
 	ItemList []*HatItem
+	PromotionList []*HatItem
 }
 
 type HatDataSet struct {
 	CurrentPage int
 	MaxPage int
 	ItemList []*HatItem
+	PromotionList []*HatItem
 }
 
-func (hd *HatData) getPage(pagenum int) []*HatItem {
-	count := 9
-	pagenum--
-	if pagenum*count >= len(hd.ItemList) {
-		return nil
-	}
-	if len(hd.ItemList) - pagenum*count > 9 {
-		return hd.ItemList[pagenum*count:pagenum*count+9]
-	} else {
-		return hd.ItemList[pagenum*count:]
-	}
+func (hd *HatData) getItemList(pagenum int) []*HatItem {
+	return hd.ItemList
+}
+
+func (hd *HatData) getPromotion() []*HatItem {
+	return hd.PromotionList
 }
 
 func (hd *HatData) initFromCSV(path string) error {
@@ -56,18 +64,23 @@ func (hd *HatData) initFromCSV(path string) error {
 			break
 		}
 		item := &HatItem{
-			Name:       record[1],
-			Desc:       record[2],
-			ImageSmall: record[3],
-			ImageBig:   record[4],
+			Name:       record[CSVHatName],
+			Desc:       record[CSVHatDesc],
+			ImageSmall: record[CSVHatSmallImage],
+			ImageBig:   record[CSVHatBigImage],
 		}
-		item.ID, _ = strconv.Atoi(record[0])
+		item.Promotion, _ = strconv.Atoi(record[CSVHatPromotion])
+		item.ID, _ = strconv.Atoi(record[CSVHatID])
 
 		for i := range item.Price {
-			item.Price[i], _ = strconv.ParseFloat(record[i+4], 32)
+			item.Price[i], _ = strconv.ParseFloat(record[i+CSVHatPrice], 32)
 		}
-		hd.ItemList = append(hd.ItemList, item)
-		fmt.Println(item)
+		if item.Promotion != 0 {
+			hd.PromotionList = append(hd.PromotionList, item)
+		} else {
+			hd.ItemList = append(hd.ItemList, item)
+		}
+		// fmt.Println(item)
 	}
 	return nil
 }
@@ -79,16 +92,11 @@ func HandleHat(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	page := 1
-	pagestr := r.FormValue("page")
-	if len(pagestr) > 0 {
-		page, _ = strconv.Atoi(pagestr)
-	}
-
 	ds := &HatDataSet{
-		ItemList: hatdata.getPage(page),
-		CurrentPage: page,
-		MaxPage: (len(hatdata.ItemList) + 8) / 9,
+		ItemList: hatdata.ItemList,
+		PromotionList: hatdata.PromotionList,
+		CurrentPage: 1,
+		MaxPage: 1,
 	}
 
 	if err = t.Execute(w, ds); err != nil {

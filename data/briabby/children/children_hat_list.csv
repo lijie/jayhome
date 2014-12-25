@@ -1,13 +1,14 @@
-1,Robot Shaped Hat&Scarf,"Handmade cute Robot pattern, eye-catching and beautiful (Scarf + hat) $15-$16",children/hat/small/hat1-small.jpg,children/hat/big/hat1-big.png,0,15,16,0,0,0,0
-2,owl with star hat&scarf,Handmade new five-pointed star Korean owl (Scarf + hat) $14.8-$16.8,children/hat/small/owl-small.jpg,children/hat/big/owl-big.png,0,14.8,15,15.5,16,0,0
-3,cute monkey hat&scarf,Handmade Baby Toddler Monkey  (Scarf + hat) $16-$17,children/hat/small/monkey-small.jpg,children/hat/big/monkey-big.png,0,0,16,16.5,16.8,0,0
-4,lillte bee hat&scarf,Handmade honey Bee Hat With Scarf Warmer Set $15.8-$16.3,children/hat/small/bee-small.jpg,children/hat/big/bee-big.png,0,15.8,16.3,0,0,0,0
-5,cute soft velboa hat,Beanie Girls/Boys Cap Winter Hat Warmer Knitted Pompon Covering $12-$13,children/hat/small/CUTEBABY-small.jpg,children/hat/big/CUTEBABY-BIG.png,0,0,12,13,0,0,0
-6,cool dinosaur hat,$9.9  Dinosaur Trapper Hat,children/hat/small/dinosaur-small.jpg,children/hat/big/dinosaur-big.png,0,9.9,9.9,9.9,9.9,0,0
-7,cute bear hat&scarf,Handmade cute bear Knitting sets(Scarf + hat) $17.5-$18.3,children/hat/small/bear-small.jpg,children/hat/big/bear-big.png,0,19.3,19.8,0,0,0,0
-8,baseball hat&scarf,Handmade Baseball and multi-coloured striped design (Scarf + hat) $17.5-$18.3,children/hat/small/baseball-small.jpg,children/hat/big/baseball-big.png,0,17.5,18.3,0,0,0,0
-9,little cat bat&scarf,Handmade Baseball and multi-coloured striped design (Scarf + hat) $17.5-$18.3,children/hat/small/cat-small.jpg,children/hat/big/cat-big.png,0,17.8,18.5,0,0,0,0
-10,cute rabiite hat,"$9.9  3D cat shaped design, with 2 Multi-coloured fluffy balls decro",children/hat/small/rabbit-small.jpg,children/hat/big/rabbit-big.png,9.9,9.9,9.9,9.9,0,0,0
-11,cool moustacke hat,$9.9  cool moustacke style Knitting Hat,children/hat/small/moustache-small.jpg,children/hat/big/moustache-big.png,0,9.9,9.9,9.9,9.9,0,0
-12,cute panda hat,$9.9  cute panda  style Knitting Hat,children/hat/small/panda-small.jpg,children/hat/big/panda-big.png,0,9.9,9.9,9.9,0,0,0
-13,lillte devil hat,$9.9  lillte devil Knitting Hat,children/hat/small/devil-small.jpg,children/hat/big/devil-big.png,0,0,0,9.9,9.9,0,0
+ID,promotion,NAME,DECS,SMALLIMAGE,BIGIMAGE,PRICE1,PRICE2,PRICE3,PRICE4,PRICE5,PRICE6,PRICE7
+1,0,Robot Shaped Hat&Scarf,"Handmade cute Robot pattern, eye-catching and beautiful (Scarf + hat) $15-$16",children/hat/small/hat1-small.jpg,children/hat/big/hat1-big.png,0,15,16,0,0,0,0
+2,0,owl with star hat&scarf,Handmade new five-pointed star Korean owl (Scarf + hat) $14.8-$16.8,children/hat/small/owl-small.jpg,children/hat/big/owl-big.png,0,14.8,15,15.5,16,0,0
+3,0,cute monkey hat&scarf,Handmade Baby Toddler Monkey  (Scarf + hat) $16-$17,children/hat/small/monkey-small.jpg,children/hat/big/monkey-big.png,0,0,16,16.5,16.8,0,0
+4,0,lillte bee hat&scarf,Handmade honey Bee Hat With Scarf Warmer Set $15.8-$16.3,children/hat/small/bee-small.jpg,children/hat/big/bee-big.png,0,15.8,16.3,0,0,0,0
+5,0,cute soft velboa hat,Beanie Girls/Boys Cap Winter Hat Warmer Knitted Pompon Covering $12-$13,children/hat/small/CUTEBABY-small.jpg,children/hat/big/CUTEBABY-BIG.png,0,0,12,13,0,0,0
+6,1,cool dinosaur hat,$9.9  Dinosaur Trapper Hat,children/hat/small/dinosaur-small.jpg,children/hat/big/dinosaur-big.png,0,9.9,9.9,9.9,9.9,0,0
+7,0,cute bear hat&scarf,Handmade cute bear Knitting sets(Scarf + hat) $17.5-$18.3,children/hat/small/bear-small.jpg,children/hat/big/bear-big.png,0,19.3,19.8,0,0,0,0
+8,0,baseball hat&scarf,Handmade Baseball and multi-coloured striped design (Scarf + hat) $17.5-$18.3,children/hat/small/baseball-small.jpg,children/hat/big/baseball-big.png,0,17.5,18.3,0,0,0,0
+9,0,little cat bat&scarf,Handmade Baseball and multi-coloured striped design (Scarf + hat) $17.5-$18.3,children/hat/small/cat-small.jpg,children/hat/big/cat-big.png,0,17.8,18.5,0,0,0,0
+10,1,cute rabiite hat,"$9.9  3D cat shaped design, with 2 Multi-coloured fluffy balls decro",children/hat/small/rabbit-small.jpg,children/hat/big/rabbit-big.png,9.9,9.9,9.9,9.9,0,0,0
+11,1,cool moustacke hat,$9.9  cool moustacke style Knitting Hat,children/hat/small/moustache-small.jpg,children/hat/big/moustache-big.png,0,9.9,9.9,9.9,9.9,0,0
+12,1,cute panda hat,$9.9  cute panda  style Knitting Hat,children/hat/small/panda-small.jpg,children/hat/big/panda-big.png,0,9.9,9.9,9.9,0,0,0
+13,1,lillte devil hat,$9.9  lillte devil Knitting Hat,children/hat/small/devil-small.jpg,children/hat/big/devil-big.png,0,0,0,9.9,9.9,0,0
