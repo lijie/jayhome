@@ -14,7 +14,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <!-- <link href="offcanvas.css" rel="stylesheet"> -->
+    <link href="offcanvas.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -28,69 +28,15 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="container-fluid">
-	<!-- Brand and toggle get grouped for better mobile display -->
-	<div class="navbar-header">
-	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-	    <span class="sr-only">Toggle navigation</span>
-	    <span class="icon-bar"></span>
-	    <span class="icon-bar"></span>
-	    <span class="icon-bar"></span>
-	  </button>
-	  <a class="navbar-brand" href="#">Brand</a>
-	</div>
-
-	<!-- Collect the nav links, forms, and other content for toggling -->
-	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	  <ul class="nav navbar-nav">
-	    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-	    <li><a href="#">Link</a></li>
-	    <li class="dropdown">
-	      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-	      <ul class="dropdown-menu" role="menu">
-		<li><a href="#">Action</a></li>
-		<li><a href="#">Another action</a></li>
-		<li><a href="#">Something else here</a></li>
-		<li class="divider"></li>
-		<li><a href="#">Separated link</a></li>
-		<li class="divider"></li>
-		<li><a href="#">One more separated link</a></li>
-	      </ul>
-	    </li>
-	  </ul>
-	  <form class="navbar-form navbar-left" role="search">
-	    <div class="form-group">
-	      <input type="text" class="form-control" placeholder="Search">
-	    </div>
-	    <button type="submit" class="btn btn-default">Submit</button>
-	  </form>
-	  <ul class="nav navbar-nav navbar-right">
-	    <li><a href="#">Link</a></li>
-	    <li class="dropdown">
-	      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-	      <ul class="dropdown-menu" role="menu">
-		<li><a href="#">Action</a></li>
-		<li><a href="#">Another action</a></li>
-		<li><a href="#">Something else here</a></li>
-		<li class="divider"></li>
-		<li><a href="#">Separated link</a></li>
-	      </ul>
-	    </li>
-	  </ul>
-	</div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
-    
     <div class="container">
+      <div class="jumbotron" style="padding:10px;">
+	<span style="font-size:30pt;">BABE GARDEN</span>
+	<span style="float:right;margin-top:20px;margin-left:5px"><img src="facebook_rollover.png"></span>
+	<span style="float:right;margin-top:20px;margin-left:5px"><img src="pinterest_rollover.png"></span>
+	<span style="float:right;margin-top:20px;margin-left:5px"><img src="twitter_rollover.png"></span>
+      </div>
 	<div class="row row-offcanvas row-offcanvas-right">
 	  <div class="col-xs-12 col-sm-9">
-	    <p class="pull-right visible-xs">
-	      <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-	    </p>
-	    <div class="jumbotron">
-	      <img src="awesome_hats_title.png" />
-	    </div>
 	    <h2>$9.9 each/bargain of the day</h2>
 	    <div class="row" align="center">
 	      {{range .PromotionList}}
@@ -129,48 +75,52 @@
 	      <img src="aviator_hat.jpg" />
 	    </div>
 	    <div class="panel-body">
-	      <p>SIZE CHART</p>
+	      <p>Crocheted items are handmade and therefore may vary slightly in size. Sizes are made to fit most people in the indicated age range.</p>
+	      <h3>SIZE CHART</h3>
 	    </div>
 	    <!-- Table -->
 	    <table class="table">
-	      <tr>
-		<td>aaa</td>
-		<td>bbb</td>
-	      </tr>
-	      <tr>
-		<td>aaa</td>
-		<td>bbb</td>
-	      </tr>
-	      <tr>
-		<td>aaa</td>
-		<td>bbb</td>
-	      </tr>
-	      <tr>
-		<td>aaa</td>
-		<td>bbb</td>
-	      </tr>
-	      <tr>
-		<td>aaa</td>
-		<td>bbb</td>
-	      </tr>
-	      <tr>
-		<td>aaa</td>
-		<td>bbb</td>
-	      </tr>
+	      <tr><td>Newborn</td><td> 13"-15"</td></tr>
+	      <tr><td>1-3 months</td><td> 14 1/2"-15 3/4"</td></tr>
+	      <tr><td>3-6 months</td><td> 15 1/2"- 17"</td></tr>
+	      <tr><td>6-12 months</td><td> 16 1/2"-18"</td></tr>
+	      <tr><td>12-18 months</td><td> 17 1/2"-18 1/2"</td></tr>
+	      <tr><td>18-24 months</td><td> 18 1/2"-19"</td></tr>
+	      <tr><td>2-3 years</td><td> 19"-20"</td></tr>
+	      <tr><td>4-6 years</td><td> 20"-20 3/4"</td></tr>
+	      <tr><td>7-10 years</td><td> 20 1/4"-21"</td></tr>
+	      <tr><td>11-15 years</td><td> 20 3/4"-21 1/2"</td></tr>
+	      <tr><td>16-Small Adult</td><td> 21 1/2"-22 1/2"</td></tr>
+	      <tr><td>Medium Adult 22</td><td> 1/2"-23 1/2"</td></tr>
+	      <tr><td>Large Adult 23</td><td> 1/2"-25"</td></tr>
 	    </table>
 	    </div>
+	    <h2>INFO</h2>
+	  <p>All crocheted items should be hand-washed in cool water, reshaped and laid flat to dry.</p>
+	  <p>Free shipping worldwide
+	    Your items will be shipped within next business day after payment
+	  </p>
+	  <p>It usuallly takes 7-14 business days to  destination worldwild, iplease notice this long shipping time, if the schedule can't meet your need, pls contact us to cancel before our shipment.</p>
 	</div><!--/.sidebar-offcanvas-->
       </div><!--/row-->
-
-      <nav>
-	<ul class="pagination" id="ba-page-nav">
-	</ul>
-      </nav>
-      
       <hr>
-
       <footer>
-	<p>&copy; Company 2014</p>
+	<div class="row" align="center" style="margin:0px; padding:5px;">
+	  <div class="col-xs-6 col-lg-4" style="">
+	    <img src="paypal.png"/>
+	    <p>Pay with paypal easily and safety</p>
+	  </div>
+	  <div class="col-xs-6 col-lg-4" style="">
+	    <img src="freeship.png"/>
+	    <p>Free Delivering Worldwide</p>
+	  </div>
+	  <div class="col-xs-6 col-lg-4" style="">
+	    <img src="handmade.png"/>
+	    <p>Because they're handmade,
+	      each one varies slightly</p>
+	  </div>
+	</div><!--/.col-xs-6.col-lg-4-->
+	<div align="center"> Copyright (c) 2014, www.babegarden.com </div>
       </footer>
 
     </div><!--/.container-->
@@ -203,8 +153,5 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->    
     <script src="offcanvas.js"></script>
-    <script>
-      showPageNav({{.CurrentPage}}, {{.MaxPage}});
-    </script>
   </body>
 </html>
