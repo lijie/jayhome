@@ -2,7 +2,7 @@ package briabby
 
 import (
 	"fmt"
-	"html/template"
+	"text/template"
 	"net/http"
 	"os"
 	"strconv"
@@ -27,6 +27,7 @@ type HatItem struct {
 	ImageBig   string
 	Desc       string
 	Price      [7]float64
+	PaypalBtn  string
 }
 
 type HatData struct {
@@ -39,7 +40,24 @@ type HatDataSet struct {
 	MaxPage int
 	ItemList []*HatItem
 	PromotionList []*HatItem
+	PaypalBtn string
 }
+
+const paypalbtn = `
+<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="JCS44R3JUVXQA">
+<table>
+<tr><td><input type="hidden" name="on0" value="age"></td></tr><tr><td><select name="os0">
+<option value="6-12MONTH">6-12MONTH $0.15 USD</option>
+<option value="12-24MONTH">12-24MONTH $0.16 USD</option>
+<option value="2-3YEAR">2-3YEAR $0.17 USD</option>
+</select> </td></tr>
+</table>
+<input type="hidden" name="currency_code" value="USD">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>`
 
 func (hd *HatData) getItemList(pagenum int) []*HatItem {
 	return hd.ItemList
@@ -68,6 +86,7 @@ func (hd *HatData) initFromCSV(path string) error {
 			Desc:       record[CSVHatDesc],
 			ImageSmall: record[CSVHatSmallImage],
 			ImageBig:   record[CSVHatBigImage],
+			PaypalBtn: paypalbtn,
 		}
 		item.Promotion, _ = strconv.Atoi(record[CSVHatPromotion])
 		item.ID, _ = strconv.Atoi(record[CSVHatID])
@@ -96,7 +115,6 @@ func HandleHat(w http.ResponseWriter, r *http.Request) {
 		ItemList: hatdata.ItemList,
 		PromotionList: hatdata.PromotionList,
 		CurrentPage: 1,
-		MaxPage: 1,
 	}
 
 	if err = t.Execute(w, ds); err != nil {
