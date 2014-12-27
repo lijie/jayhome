@@ -8,7 +8,6 @@ import "reader"
 import "fmt"
 import "flag"
 import "sync"
-import "briabby"
 
 var bb *blog.Blog
 var blogMutex sync.Mutex
@@ -42,28 +41,19 @@ func ReaderServer(w http.ResponseWriter, req *http.Request) {
 	rr.Serve(w, req)
 }
 
-var port = flag.Int("port", 80, "default port")
-var rootDir = flag.String("rootdir", "", "default root dir")
+var port = flag.Int("port", 8080, "default port")
+var rootDir = flag.String("rootdir", "../data/static", "default root dir")
 
 func main() {
 	flag.Parse()
 
 	// run for jayhome
-	if *rootDir == "" {
-		// serve static under an alternate URL
-		http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir("../data/static"))))
-		http.Handle("/briabby/", http.StripPrefix("/briabby/", http.FileServer(http.Dir("../data/briabby"))))
-		// http.HandleFunc("/b", BlogServer)
-		http.HandleFunc("/b/", BlogServer)
-		http.HandleFunc("/r/", ReaderServer)
-		http.HandleFunc("/hello", HelloServer)
-	} else {
-		// run for SimpleHttpd
-		http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir(*rootDir))))
-	}
+	// serve static under an alternate URL
+	http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir(*rootDir))))
+	http.HandleFunc("/b/", BlogServer)
+	http.HandleFunc("/r/", ReaderServer)
+	http.HandleFunc("/hello", HelloServer)
 
-	briabby.InitBriabby("/briabby/")
-	
 	err := http.ListenAndServe(fmt.Sprintf(":%d", *port), nil)
 	if err != nil {
 		log.Fatal("fatal %p", err)

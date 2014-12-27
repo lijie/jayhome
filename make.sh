@@ -3,9 +3,8 @@
 # compile program
 export GOPATH=`pwd`
 go install blog
-go install web
-go install test
-go install briabby
+go install exe/web
+go install exe/babegarden
 
 # generate blog txt
 make -C data/blog/md

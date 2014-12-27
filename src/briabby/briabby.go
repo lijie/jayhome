@@ -106,7 +106,7 @@ func (hd *HatData) initFromCSV(path string) error {
 
 func HandleHat(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("HandleHat")
-	t, err := template.ParseFiles("../data/briabby/hat.html")
+	t, err := template.ParseFiles("../data/babegarden/hat.html")
 	if err != nil {
 		return
 	}
@@ -124,7 +124,7 @@ func HandleHat(w http.ResponseWriter, r *http.Request) {
 
 var hatdata HatData
 func InitBriabby(prefix string) {
-	hatdata.initFromCSV("../data/briabby/children/children_hat_list.csv")
+	hatdata.initFromCSV("../data/babegarden/children/children_hat_list.csv")
 	fmt.Println(hatdata)
-	http.HandleFunc("/briabby/hat", HandleHat)
+	http.HandleFunc(prefix + "/hat", HandleHat)
 }
