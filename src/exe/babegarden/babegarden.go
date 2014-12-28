@@ -13,7 +13,9 @@ func main() {
 	flag.Parse()
 
 	// serve static under an alternate URL
-	http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir(*rootDir))))
+	http.Handle("/images/", http.StripPrefix("/images/", http.FileServer(http.Dir(*rootDir + "/images/"))))
+	http.Handle("/template/", http.StripPrefix("/template/", http.FileServer(http.Dir(*rootDir + "/template/"))))
+	http.Handle("/children/", http.StripPrefix("/children/", http.FileServer(http.Dir(*rootDir + "/children/"))))
 
 	briabby.InitBriabby("")
 	
