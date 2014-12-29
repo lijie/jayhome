@@ -147,6 +147,6 @@ var mWidth = 1040;
 <script type="text/javascript" src="../blog/jquery-1.6.2.min.js" ></script>
 <script type="text/javascript" src="../blog/infscroll.js" ></script>
 <script type="text/javascript" src="../blog/callinfscroll.js" ></script>
-
+<script type="text/javascript" src="ga.js"></script>
   </body>
 </html>
