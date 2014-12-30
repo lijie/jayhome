@@ -149,6 +149,7 @@ func (b *Blog) readOneBlog(stamp int) string {
 	var data mainTemplate
 	data.IsMain = false
 	b.readBlog(&data, stamp, 1)
+	data.Title = data.Entries[0].Title
 
 	output := new(bytes.Buffer)
 	t.Execute(output, data)

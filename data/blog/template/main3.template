@@ -48,8 +48,29 @@ padding: 2px 2px 2px 5px;
 }
 </style>
   <body>
+    <script>
+      window.fbAsyncInit = function() {
+      FB.init({
+      appId      : '932124956819376',
+      xfbml      : true,
+      version    : 'v2.2'
+      });
+      };
+
+      (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
     <div class="head">
       Thoughts, reading notes and links about computer programming, by Li Jie.
+      <div>
+	<a href="https://twitter.com/ajieli" class="twitter-follow-button" data-show-count="false">Follow @ajieli</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      </div>
     </div>
     <div class="">
       {{if .IsMain}}
@@ -69,6 +90,16 @@ padding: 2px 2px 2px 5px;
 	<div class="title">{{.Title}}</div>
 	<div class="time">{{.Time}}</div>
 	<div class="text">{{.Text}}</div>
+	<div>
+	  <a href="https://twitter.com/share" class="twitter-share-button" data-via="ajieli">Tweet</a>
+	  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+	</div>
+	<div
+	   class="fb-like"
+	   data-share="true"
+	   data-width="450"
+	   data-show-faces="true">
+	</div>
 	<div class="comment_area">
 	  comments here
 	</div>

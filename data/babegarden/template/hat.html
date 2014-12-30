@@ -29,12 +29,49 @@
   </head>
 
   <body>
+    <script>
+      window.fbAsyncInit = function() {
+      FB.init({
+      appId      : '910714412307238',
+      xfbml      : true,
+      version    : 'v2.2'
+      });
+      };
+
+      (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+    
     <div class="container">
       <div style="padding:10px; margin-bottom:20px; border-bottom: 3px dotted #ccc">
 	<img src="images/babegarden.png" height="80" />
-	<span style="float:right;margin-top:20px;margin-left:5px"><img src="images/facebook_rollover.png"></span>
-	<span style="float:right;margin-top:20px;margin-left:5px"><img src="images/pinterest_rollover.png"></span>
-	<span style="float:right;margin-top:20px;margin-left:5px"><img src="images/twitter_rollover.png"></span>
+	<span style="float:right;margin-top:20px;margin-left:5px">
+	  <a href="https://twitter.com/cuteBabegarden" target="_blank">
+	    <img src="images/twitter_rollover.png">
+	  </a>
+	</span>
+	<span style="float:right;margin-top:20px;margin-left:5px">
+	  <a href="https://www.pinterest.com/babegarden/" target="_blank"><img src="images/pinterest_rollover.png"></a>
+	</span>
+	<span style="float:right;margin-top:20px;margin-left:5px">
+	  <img src="images/facebook_rollover.png">
+	</span>
+	<a href="//www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"  data-pin-color="red" data-pin-height="28"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_28.png" /></a>
+	<!-- Please call pinit.js only once per page -->
+	<script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js"></script>
+	<a href="https://twitter.com/cuteBabegarden" class="twitter-follow-button" data-show-count="false">Follow @cuteBabegarden</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+	<div class="fb-like"
+	     data-href="https://www.facebook.com/cutebabegarden"
+	     data-show-faces="false"
+	     data-layout="button_count"
+	</div>
       </div>
 	<div class="row row-offcanvas row-offcanvas-right">
 	  <div class="col-xs-12 col-sm-9">
