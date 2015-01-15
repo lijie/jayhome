@@ -107,9 +107,27 @@ func HandleHat(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+type IndexDataSet struct {
+}
+
+func HandleIndex(w http.ResponseWriter, r *http.Request) {
+	t, err := template.ParseFiles("../data/babegarden/template/index.html")
+	if err != nil {
+		return
+	}
+
+	ds := &IndexDataSet{
+	}
+
+	if err = t.Execute(w, ds); err != nil {
+		return
+	}
+}
+
 var hatdata HatData
 func InitBriabby(prefix string) {
 	hatdata.initFromCSV("../data/babegarden/children/children_hat_list.csv")
 	fmt.Println(hatdata)
-	http.HandleFunc(prefix + "/", HandleHat)
+	http.HandleFunc(prefix + "/hat", HandleHat)	
+	http.HandleFunc(prefix + "/", HandleIndex)
 }

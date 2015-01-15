@@ -13,7 +13,8 @@ func main() {
 	flag.Parse()
 
 	// serve static under an alternate URL
-	http.Handle("/images/", http.StripPrefix("/images/", http.FileServer(http.Dir(*rootDir + "/images/"))))
+	http.Handle("/images/", http.StripPrefix("/images/", http.FileServer(http.Dir(*rootDir + "/images/"))))	
+	http.Handle("/images2/", http.StripPrefix("/images2/", http.FileServer(http.Dir(*rootDir + "/images2/"))))
 	http.Handle("/template/", http.StripPrefix("/template/", http.FileServer(http.Dir(*rootDir + "/template/"))))
 	http.Handle("/children/", http.StripPrefix("/children/", http.FileServer(http.Dir(*rootDir + "/children/"))))
 

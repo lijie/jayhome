@@ -1,0 +1,184 @@
+.nopadding {
+    padding: 0px;
+}
+
+.box {
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: 1024px;
+    height: 1300px;
+}
+
+.bg {
+    background-image: url(../images2/bg.png);
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 1300px;
+    width: 1024px;
+    z-index: -10;
+}
+
+.border {
+    border: 1px solid #000;
+}
+
+.relative {
+    position: relative;
+}
+
+.home {
+    position: absolute;
+    left: 122.039px;
+    top: 239.193px;
+}
+
+.shoes {
+    position: absolute;
+    left: 334.006px;
+    top: 239.193px;
+}
+
+.hats {
+    position: absolute;
+    left: 231.081px;
+    top: 237.693px;
+}
+
+.headbands {
+    position: absolute;
+    left: 530.017px;
+    top: 237.693px;
+}
+
+.dress {
+    position: absolute;
+    left: 440.662px;
+    top: 239.193px;
+}
+
+.booties {
+    position: absolute;
+    left: 647.18px;
+    top: 239.193px;
+}
+
+
+.photo_frame1 {
+    position: absolute;
+    left: 764px;
+    top: 297px;
+}
+
+.photo_frame2 {
+    position: absolute;
+    left: 606px;
+    top: 296px;
+}
+
+.photo_frame3 {
+    position: absolute;
+    left: 605px;
+    top: 466px;
+}
+
+.photo_frame4 {
+    position: absolute;
+    left: 764px;
+    top: 467px;
+}
+
+.separator {
+    background-image: url("../images2/separator.png");
+    position: absolute;
+    left: 114px;
+    top: 260px;
+    width: 796px;
+    height: 6px;
+}
+
+.separator2 {
+    background-image: url("../images2/separator.png");
+    position: absolute;
+    left: 114px;
+    top: 832px;
+    width: 796px;
+    height: 6px;
+}
+
+.footer {
+    position: absolute;
+    left: 0px;
+    top: 840px;
+}
+
+.btn_headband {
+    position: absolute;
+    left: 436px;
+    top: 296px;
+}
+
+.btn_dress {
+    position: absolute;
+    left: 110px;
+    top: 440px;
+}
+
+.btn_booties {
+    position: absolute;
+    left: 338px;
+    top: 506px;
+}
+
+.btn_hat {
+    position: absolute;
+    left: 363px;
+    top: 636px;
+}
+
+.btn_shoes {
+    position: absolute;
+    left: 445px;
+    top: 732px;
+}
+
+.logo {
+    position: absolute;
+    left: 450px;
+    top: 190px;
+}
+
+.pinterest {
+    position: absolute;
+    left: 700px;
+    top: 140px;
+}
+
+.facebook {
+    position: absolute;
+    left: 740px;
+    top: 140px;
+}
+
+.twitter {
+    position: absolute;
+    left: 780px;
+    top: 140px;
+}
+
+body {
+    padding:0px;
+    margin:0px;
+}
+
+.bg2 {
+    background-image: url(../images2/bg2.png);
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 1300px;
+    width: 1024px;
+    z-index: -1;
+}
