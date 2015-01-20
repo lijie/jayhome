@@ -1,0 +1,167 @@
+.nopadding {
+    padding: 0px;
+}
+
+.box {
+    background-image: url(../images2/bg.png);
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: 1024px;
+    height: 100%;
+}
+
+.border {
+    border: 0px solid #000;
+}
+
+.relative {
+    position: relative;
+}
+
+.logo_area {
+    background-image: url(../images2/bg.png);
+    position: relative;
+    top: 0px;
+    left: 0px;
+    height: 160px;
+    width: 1024px;
+}
+
+.logo_area .logo {
+    position: absolute;
+    top: 80px;
+    left: 380px;
+    height: 50px;
+}
+
+.logo_area ul {
+    position: absolute;
+    list-style: none;
+    top: 90px;
+    right: 150px;
+}
+
+.logo_area ul li {
+    float: left;
+}
+
+.menu {
+    background-image: url(../images2/bg.png);
+    position: relative;
+    left: 0px;
+    width: 1024px;
+    height: 50px;
+}
+
+.menu ul {
+    width: 796px;
+    padding: 0px;
+    list-style: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.menu ul li {
+    width: 127px;
+    margin: 0px;
+    float:left;
+    position: relative;
+    display: inline;
+}
+
+.separator {
+    background-image: url("../images2/separator.png");
+    position: relative;
+    width: 796px;
+    height: 6px;
+    left: 114px;
+}
+
+.separator2 {
+    background-image: url("../images2/separator.png");
+    position: absolute;
+    left: 114px;
+    top: 832px;
+    width: 796px;
+    height: 6px;
+}
+
+.footer {
+    position: relative;
+    left: 0px;
+}
+
+body {
+    padding:0px;
+    margin:0px;
+}
+
+.bg2 {
+    background-image: url(../images2/bg2.png);
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1024px;
+    z-index: -1;
+}
+
+.item_box {
+    background-image: url(../images2/bg.png);
+    left: 0px;
+    width: 1024px;
+    height: 100%;
+}
+
+.item_box ul {
+    list-style: none;
+    width: 900px;
+    padding: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.item_box li {
+    background: url(../images2/item_bg.png) no-repeat top;
+    float:left;
+    width: 298px;
+    height: 420px;
+    padding-top:0px;
+    margin-top:0px;
+    font-size: 11pt;
+    position: relative;
+}
+
+.item_box li .best {
+    position: absolute;
+    right: 0px;
+    top: -20px;
+}
+
+.item_box .item_detail {
+    height: 311px;
+    width: 240px;
+    margin-top:0px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.item_box .item_detail p {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.item_pay {
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.item_pay table {
+    width: 100%;
+}
+
+.clear {
+    clear: both;
+    height: 0px;
+}

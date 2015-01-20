@@ -91,7 +91,7 @@ func (hd *HatData) initFromCSV(path string) error {
 
 func HandleHat(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("HandleHat")
-	t, err := template.ParseFiles("../data/babegarden/template/hat.html")
+	t, err := template.ParseFiles("../data/babegarden/template/hat2.html")
 	if err != nil {
 		return
 	}
