@@ -1,0 +1,83 @@
+body {
+    background-image: url(../images2/bg.png);
+    padding:0px;
+    margin:0px;
+}
+
+.box {
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: 1024px;
+    height: 100%;
+}
+
+.logo_area {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    height: 160px;
+    width: 1024px;
+}
+
+.logo_area .logo {
+    position: absolute;
+    top: 80px;
+    left: 380px;
+    height: 50px;
+}
+
+.logo_area ul {
+    position: absolute;
+    list-style: none;
+    top: 90px;
+    right: 150px;
+}
+
+.logo_area ul li {
+    float: left;
+}
+
+.menu {
+    background-image: url(../images2/bg.png);
+    position: relative;
+    left: 0px;
+    width: 1024px;
+    height: 50px;
+}
+
+.menu ul {
+    width: 796px;
+    padding: 0px;
+    list-style: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.menu ul li {
+    width: 127px;
+    margin: 0px;
+    float:left;
+    position: relative;
+    display: inline;
+}
+
+.separator {
+    background-image: url("../images2/separator.png");
+    position: relative;
+    width: 796px;
+    height: 6px;
+    left: 114px;
+}
+
+.footer {
+    position: relative;
+    left: 0px;
+    height: 300px;
+}
+
+.clear {
+    clear: both;
+    height: 0px;
+}
