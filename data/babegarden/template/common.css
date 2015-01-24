@@ -66,9 +66,8 @@ body {
 .separator {
     background-image: url("../images2/separator.png");
     position: relative;
-    width: 796px;
+    width: 1024px;
     height: 6px;
-    left: 114px;
 }
 
 .footer {

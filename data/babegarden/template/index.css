@@ -7,7 +7,7 @@
 }
 
 .room {
-    background: url("../images2/bg3.png") no-repeat top;
+    background: url("../images2/bg2.png") no-repeat top;
     position: relative;
     width: 1024px;
     height: 526px;
@@ -15,10 +15,12 @@
 }
 
 .room .photo_gallery {
+    background: url("../images2/photo_frame.png") no-repeat top;
     position: absolute;
     top: -20px;
-    right: 100px;
-    width: 300px;
+    right: 50px;
+    width: 435px;
+    height: 364px;
 }
 
 .room .photo_gallery ul {
@@ -34,31 +36,31 @@
 
 .room .btn_headband {
     position: absolute;
-    left: 436px;
+    left: 336px;
     top: -15px;
 }
 
 .room .btn_dress {
     position: absolute;
-    left: 110px;
+    left: 10px;
     top: 130px;
 }
 
 .room .btn_booties {
     position: absolute;
-    left: 338px;
+    left: 238px;
     top: 200px;
 }
 
 .room .btn_hat {
     position: absolute;
-    left: 363px;
+    left: 263px;
     top: 326px;
 }
 
 .room .btn_shoes {
     position: absolute;
-    left: 445px;
+    left: 345px;
     top: 422px;
 }
 
