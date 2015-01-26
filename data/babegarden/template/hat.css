@@ -10,45 +10,40 @@
     position: relative;
 }
 
-.separator2 {
-    background-image: url("../images2/separator.png");
-    position: absolute;
-    left: 114px;
-    top: 832px;
-    width: 796px;
-    height: 6px;
-}
-
 .item_box {
     background-image: url(../images2/bg.png);
     left: 0px;
     width: 1024px;
     height: 100%;
+    border: 0px solid #000;
 }
 
 .item_box ul {
     list-style: none;
-    width: 900px;
+    width: 1024px;
     padding: 0px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 55px;
 }
 
 .item_box li {
     background: url(../images2/item_bg.png) no-repeat top;
     float:left;
-    width: 298px;
-    height: 420px;
+    width: 240px;
+    height: 448px;
     padding-top:0px;
     margin-top:0px;
+    margin-left: 27px;
     font-size: 11pt;
     position: relative;
+    border: 0px solid #000;
 }
 
 .item_box li .best {
     position: absolute;
     right: 0px;
-    top: -20px;
+    top: -27px;
 }
 
 .item_box .item_detail {
@@ -71,4 +66,9 @@
 
 .item_pay table {
     width: 100%;
+}
+
+.item_pay form {
+    height: 83px;
+    border: 0px solid #000;
 }

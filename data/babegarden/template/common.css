@@ -19,6 +19,7 @@ body {
     left: 0px;
     height: 160px;
     width: 1024px;
+    border: 0px solid #000;
 }
 
 .logo_area .logo {
@@ -42,21 +43,25 @@ body {
 .menu {
     background-image: url(../images2/bg.png);
     position: relative;
+    margin: 0px;
+    padding: 0px;
     left: 0px;
     width: 1024px;
-    height: 50px;
+    margin-bottom: 0px;
+    border: 0px solid #000;
 }
 
 .menu ul {
-    width: 796px;
+    width: 914px;
     padding: 0px;
     list-style: none;
     margin-left: auto;
     margin-right: auto;
+    border: 0px solid #000;
 }
 
 .menu ul li {
-    width: 127px;
+    width: 152px;
     margin: 0px;
     float:left;
     position: relative;

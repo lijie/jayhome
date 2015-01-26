@@ -9,6 +9,7 @@
 .room {
     background: url("../images2/bg2.png") no-repeat top;
     position: relative;
+    margin-top: 55px;
     width: 1024px;
     height: 526px;
     z-index: 10;
