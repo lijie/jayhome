@@ -52,7 +52,7 @@ body {
 }
 
 .menu ul {
-    width: 914px;
+    width: 1024px;
     padding: 0px;
     list-style: none;
     margin-left: auto;
@@ -61,15 +61,16 @@ body {
 }
 
 .menu ul li {
-    width: 152px;
+    width: 170px;
     margin: 0px;
     float:left;
     position: relative;
     display: inline;
+    border: 0px solid #000;
 }
 
 .separator {
-    background-image: url("../images2/separator.png");
+    background: url("../images2/separator.png") no-repeat top;
     position: relative;
     width: 1024px;
     height: 6px;
