@@ -1,12 +1,12 @@
 package briabby
 
 import (
+	"encoding/csv"
 	"fmt"
-	"text/template"
 	"net/http"
 	"os"
 	"strconv"
-	"encoding/csv"
+	"text/template"
 )
 
 const (
@@ -20,27 +20,16 @@ const (
 	CSVPaypalBtn = CSVHatPrice + 7
 )
 
-type HatItem struct {
-	ID         int
-	Name       string
-	Promotion  int
-	ImageSmall string
-	ImageBig   string
-	Desc       string
-	Price      [7]float64
-	PaypalBtn  string
-}
-
 type HatData struct {
-	ItemList []*HatItem
+	ItemList      []*HatItem
 	PromotionList []*HatItem
 }
 
 type HatDataSet struct {
 	CurrentPage int
-	MaxPage int
-	ItemList []*HatItem
-	PromotionList []*HatItem
+	MaxPage     int
+	ItemList    []*HatItem
+	// PromotionList []*HatItem
 	PaypalBtn string
 }
 
@@ -73,17 +62,17 @@ func (hd *HatData) initFromCSV(path string) error {
 			ImageBig:   record[CSVHatBigImage],
 			PaypalBtn:  record[CSVPaypalBtn],
 		}
-		item.Promotion, _ = strconv.Atoi(record[CSVHatPromotion])
+		// item.Promotion, _ = strconv.Atoi(record[CSVHatPromotion])
 		item.ID, _ = strconv.Atoi(record[CSVHatID])
 
-		for i := range item.Price {
-			item.Price[i], _ = strconv.ParseFloat(record[i+CSVHatPrice], 32)
-		}
-		if item.Promotion != 0 {
-			hd.PromotionList = append(hd.PromotionList, item)
-		} else {
-			hd.ItemList = append(hd.ItemList, item)
-		}
+		//for i := range item.Price {
+		//	item.Price[i], _ = strconv.ParseFloat(record[i+CSVHatPrice], 32)
+		//}
+		// if item.Promotion != 0 {
+		// 	hd.PromotionList = append(hd.PromotionList, item)
+		// } else {
+		// 	hd.ItemList = append(hd.ItemList, item)
+		// }
 		// fmt.Println(item)
 	}
 	return nil
@@ -97,11 +86,14 @@ func HandleHat(w http.ResponseWriter, r *http.Request) {
 	}
 
 	ds := &HatDataSet{
-		ItemList: hatdata.ItemList,
-		PromotionList: hatdata.PromotionList,
+		ItemList: hatitemarray,
+		// PromotionList: hatdata.PromotionList,
 		CurrentPage: 1,
 	}
 
+	itemlock.Lock()
+	defer itemlock.Unlock()
+	
 	if err = t.Execute(w, ds); err != nil {
 		return
 	}
@@ -116,8 +108,7 @@ func HandleIndex(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	ds := &IndexDataSet{
-	}
+	ds := &IndexDataSet{}
 
 	if err = t.Execute(w, ds); err != nil {
 		return
@@ -125,9 +116,17 @@ func HandleIndex(w http.ResponseWriter, r *http.Request) {
 }
 
 var hatdata HatData
+
 func InitBriabby(prefix string) {
 	hatdata.initFromCSV("../data/babegarden/children/children_hat_list.csv")
 	fmt.Println(hatdata)
-	http.HandleFunc(prefix + "/hat", HandleHat)	
-	http.HandleFunc(prefix + "/", HandleIndex)
+
+	err := InitItemsFromJson()
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	http.HandleFunc(prefix+"/hat", HandleHat)
+	http.HandleFunc(prefix+"/", HandleIndex)
+	InitAdmin(prefix)
 }

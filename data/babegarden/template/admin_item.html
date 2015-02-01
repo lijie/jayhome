@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <meta name="description" content="Hand-made Accessories to make cute kids even cuter">
+    <meta name="keywords" content="best baby products, baby stores online, best baby gifts，accessories, handmade, crochet, yarn, hat, hats, character hats, beanie, beanies, kids, babies, newborns, scarf, children, bows, flowers, headbands, cute, prop, photo">
+    <link rel="icon" href="../../favicon.ico">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/template/admin_item.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <title>Babegarden| Hand-made Accessories,Cute Baby hat,Scarf and Hat</title>
+  </head>
+  <body>
+    <div class="form_item_add">
+      <p><a href="item?fn=list" class="button">BACK TO ITEM LIST</a></p>
+    <form class="form-horizontal" id="form_item_add">
+      <div class="form-group">
+	<label for="item_name" class="col-sm-2 control-label">Name</label>
+	<div class="col-sm-10">
+	  <input type="text" class="form-control" id="item_name" placeholder="" value="TestName" name="item_name">
+	</div>
+      </div>
+      <div class="form-group">
+	<label for="item_name" class="col-sm-2 control-label">Category</label>
+	<div class="col-sm-10">
+	  <select id="item_category" name="item_category" class="form-control">
+	    <option>hat</option>
+	    <option>shoes</option>
+	    <option>dress</option>
+	    <option>headbands</option>
+	    <option>booties</option>
+	  </select>
+	</div>
+      </div>
+      <div class="form-group">
+	<label for="item_name" class="col-sm-2 control-label">Desc</label>
+	<div class="col-sm-10">
+	  <input type="text" class="form-control" id="item_desc" placeholder="" name="item_desc">
+	</div>
+      </div>
+      <div class="form-group">
+	<label for="item_name" class="col-sm-2 control-label">Price</label>
+	<div class="col-sm-10">
+	  <input type="text" class="form-control" id="item_price" placeholder="" name="item_price">
+	</div>
+      </div>
+      <div class="form-group">
+	<label for="item_paypal" class="col-sm-2 control-label">Paypal button</label>
+	<div class="col-sm-10">
+	  <textarea class="form-control" rows="4" id="item_paypal" name="item_paypal"></textarea>
+	</div>
+      </div>
+      <div class="form-group">
+	<div class="col-sm-offset-2 col-sm-10">
+	  <div class="checkbox">
+	    <label>
+	      <input type="checkbox" id="item_promotion" name="item_promotion"> Promotion
+	    </label>
+	  </div>
+	</div>
+      </div>
+      <input type="hidden" name="item_small_image_url" id="item_small_image_url" value="">
+      <input type="hidden" name="item_big_image_url" id="item_big_image_url" value="">
+      <input type="hidden" name="item_id" id="item_id" value="">
+    </form>
+    <div class="form-horizontal" id="form_item_add">
+      <div class="form-group">
+	<label for="item_small_image" class="col-sm-2 control-label">Small Image</label>
+	<div class="col-sm-10">
+	  <input type="file" id="item_small_image" name="item_small_image" multiple>
+	  <a href="#" class="thumbnail">
+	    <img id="item_small_image_preview" src="" alt="" width="180" height="180">
+	  </a>
+	</div>
+      </div>
+      <div class="form-group">
+	<label for="item_big_image" class="col-sm-2 control-label">Big Image</label>
+	<div class="col-sm-10">
+	  <input type="file" id="item_big_image" name="item_big_image" multiple>
+	  <a href="#" class="thumbnail">
+	    <img id="item_big_image_preview" src="" alt="" width="180" height="180">
+	  </a>
+	</div>
+      </div>
+    </div>
+    <a class="btn btn-default" role="button" id="submit" href="#">Save</a>
+    </div>
+  </body>
+  <script src="/template/vendor/jquery.ui.widget.js"></script>
+  <script src="/template/jquery.fileupload.js"></script>
+  <script src="/template/admin_item.js"></script>
+</html>

@@ -17,6 +17,8 @@ func main() {
 	http.Handle("/images2/", http.StripPrefix("/images2/", http.FileServer(http.Dir(*rootDir + "/images2/"))))
 	http.Handle("/template/", http.StripPrefix("/template/", http.FileServer(http.Dir(*rootDir + "/template/"))))
 	http.Handle("/children/", http.StripPrefix("/children/", http.FileServer(http.Dir(*rootDir + "/children/"))))
+	http.Handle("/admin/", http.StripPrefix("/admin/", http.FileServer(http.Dir(*rootDir + "/admin/"))))
+	http.Handle("/tmp/", http.StripPrefix("/tmp/", http.FileServer(http.Dir("../tmp/"))))
 
 	briabby.InitBriabby("")
 	
