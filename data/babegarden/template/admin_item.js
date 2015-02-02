@@ -12,6 +12,10 @@ $("#submit").on("click", function(event) {
 	dataType: 'json',
 	success: function(data) {
 	    console.log(data);
+	    if (data.result == "ok") {
+		$('#alert_info').addClass("alert-success")
+		$('#alert_info').text("Save success!")
+	    }
 	},
 	error: function() {
 	    console.log("error");

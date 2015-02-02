@@ -71,7 +71,6 @@ func SaveItem(item *HatItem) error {
 	defer itemlock.Unlock()
 
 	item.ID = GetNextItemID()
-
 	hatitemarray = append(hatitemarray, item)
 	sort.Sort(ItemArray(hatitemarray))
 	hatitemmap[item.ID] = item
@@ -109,7 +108,7 @@ func FlushFile() error {
 	if err != nil {
 		return err
 	}
-	f, err := os.OpenFile(itemfile, os.O_RDWR|os.O_CREATE, 0666)
+	f, err := os.OpenFile(itemfile, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
 	if err != nil {
 		return err
 	}

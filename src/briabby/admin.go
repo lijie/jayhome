@@ -92,6 +92,10 @@ func fnHandleSaveItem(w http.ResponseWriter, r *http.Request) {
 			io.WriteString(w, errorJsonResp)
 			return
 		}
+
+		itemlock.Lock()
+		defer itemlock.Unlock()
+		item.ID = intid
 	}
 
 	item.Name = r.FormValue("item_name")
@@ -102,13 +106,12 @@ func fnHandleSaveItem(w http.ResponseWriter, r *http.Request) {
 	item.Promotion = r.FormValue("item_promotion")
 	item.Category = r.FormValue("item_category")
 	item.Price = strings.Split(r.FormValue("item_price"), ",")
-	SaveItem(item)
+	if item.ID == 0 {
+		SaveItem(item)
+	} else {
+		FlushFile()
+	}
 	io.WriteString(w, okJsonResp)
-}
-
-func fnHandleEditItem(w http.ResponseWriter, r *http.Request) {
-	name := r.FormValue("item_name")
-	fmt.Println(name)
 }
 
 func fnHandleDelItem(w http.ResponseWriter, r *http.Request) {
@@ -117,6 +120,25 @@ func fnHandleDelItem(w http.ResponseWriter, r *http.Request) {
 		DelItem(id)
 	}
 	fnHandleListItem(w, r)
+}
+
+func fnHandleEditItem(w http.ResponseWriter, r *http.Request) {
+	id, err := strconv.Atoi(r.FormValue("id"))
+	if err != nil {
+		return
+	}
+	item := FindItemByID(id)
+	if item == nil {
+		return
+	}
+	t, err := template.ParseFiles("../data/babegarden/template/admin_item.html")
+	if err != nil {
+		return
+	}
+	fmt.Println(item)
+	if err = t.Execute(w, item); err != nil {
+		return
+	}
 }
 
 func fnHandleListItem(w http.ResponseWriter, r *http.Request) {
@@ -149,18 +171,19 @@ func HandleAdminItem(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		if err = t.Execute(w, nil); err != nil {
+		item := &HatItem{}
+		if err = t.Execute(w, item); err != nil {
 			return
 		}
 	}
 
 	if fn == "add" {
 		fnHandleSaveItem(w, r)
-		io.WriteString(w, `{"str":"hello"}`)
 		return
 	}
 
 	if fn == "edit" {
+		fnHandleEditItem(w, r)
 	}
 
 	if fn == "del" {
