@@ -72,7 +72,6 @@ func SaveItem(item *HatItem) error {
 
 	item.ID = GetNextItemID()
 	hatitemarray = append(hatitemarray, item)
-	sort.Sort(ItemArray(hatitemarray))
 	hatitemmap[item.ID] = item
 	err := FlushFile()
 	return err
@@ -104,6 +103,9 @@ func DelItem(id int) error {
 }
 
 func FlushFile() error {
+	// re-sort
+	sort.Sort(ItemArray(hatitemarray))
+
 	b, err := json.Marshal(hatitemarray)
 	if err != nil {
 		return err
