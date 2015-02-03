@@ -83,7 +83,7 @@ func fnHandleSaveItem(w http.ResponseWriter, r *http.Request) {
 	var item *HatItem
 
 	id := r.FormValue("item_id")
-	if len(id) == 0 {
+	if len(id) == 0 || id == "0" {
 		item = &HatItem{}
 	} else {
 		intid, _ := strconv.Atoi(id)

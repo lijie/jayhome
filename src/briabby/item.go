@@ -144,6 +144,9 @@ func InitItemsFromJson() error {
 			maxhatitemid = hatitemarray[i].ID + 1
 		}
 	}
+	if maxhatitemid == 0 {
+		maxhatitemid = 1
+	}
 	fmt.Println(hatitemarray)
 	sort.Sort(ItemArray(hatitemarray))
 	return nil
