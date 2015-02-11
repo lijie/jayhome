@@ -1,99 +1,34 @@
 package briabby
 
 import (
-	"encoding/csv"
 	"fmt"
 	"net/http"
-	"os"
-	"strconv"
 	"text/template"
 )
-
-const (
-	CSVHatID = iota
-	CSVHatPromotion
-	CSVHatName
-	CSVHatDesc
-	CSVHatSmallImage
-	CSVHatBigImage
-	CSVHatPrice
-	CSVPaypalBtn = CSVHatPrice + 7
-)
-
-type HatData struct {
-	ItemList      []*HatItem
-	PromotionList []*HatItem
-}
 
 type HatDataSet struct {
 	CurrentPage int
 	MaxPage     int
-	ItemList    []*HatItem
-	// PromotionList []*HatItem
-	PaypalBtn string
-}
-
-func (hd *HatData) getItemList(pagenum int) []*HatItem {
-	return hd.ItemList
-}
-
-func (hd *HatData) getPromotion() []*HatItem {
-	return hd.PromotionList
-}
-
-func (hd *HatData) initFromCSV(path string) error {
-	f, err := os.OpenFile(path, os.O_RDONLY, 0666)
-	if err != nil {
-		return err
-	}
-	r := csv.NewReader(f)
-	// r.Comment = []rune("#")
-
-	var record []string
-	for {
-		record, err = r.Read()
-		if err != nil {
-			break
-		}
-		item := &HatItem{
-			Name:       record[CSVHatName],
-			Desc:       record[CSVHatDesc],
-			ImageSmall: record[CSVHatSmallImage],
-			ImageBig:   record[CSVHatBigImage],
-			PaypalBtn:  record[CSVPaypalBtn],
-		}
-		// item.Promotion, _ = strconv.Atoi(record[CSVHatPromotion])
-		item.ID, _ = strconv.Atoi(record[CSVHatID])
-
-		//for i := range item.Price {
-		//	item.Price[i], _ = strconv.ParseFloat(record[i+CSVHatPrice], 32)
-		//}
-		// if item.Promotion != 0 {
-		// 	hd.PromotionList = append(hd.PromotionList, item)
-		// } else {
-		// 	hd.ItemList = append(hd.ItemList, item)
-		// }
-		// fmt.Println(item)
-	}
-	return nil
+	ItemList    []ProtoItem
 }
 
 func HandleHat(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("HandleHat")
 	t, err := template.ParseFiles("../data/babegarden/template/hat2.html")
 	if err != nil {
 		return
 	}
 
+	var items []ProtoItem
+	if items, err = store.FindItemByCat("hat"); err != nil {
+		fmt.Println(err)
+		return
+	}
+
 	ds := &HatDataSet{
-		ItemList: hatitemarray,
-		// PromotionList: hatdata.PromotionList,
+		ItemList:    items,
 		CurrentPage: 1,
 	}
 
-	itemlock.Lock()
-	defer itemlock.Unlock()
-	
 	if err = t.Execute(w, ds); err != nil {
 		return
 	}
@@ -115,15 +50,15 @@ func HandleIndex(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-var hatdata HatData
+var store *Store
 
 func InitBriabby(prefix string) {
-	hatdata.initFromCSV("../data/babegarden/children/children_hat_list.csv")
-	fmt.Println(hatdata)
-
-	err := InitItemsFromJson()
+	var err error
+	store, err = NewStore("162.243.132.159:27017")
 	if err != nil {
-		fmt.Println(err)
+		fmt.Printf("connect database error %v\n", err)
+	} else {
+		fmt.Printf("connect database ok\n")
 	}
 
 	http.HandleFunc(prefix+"/hat", HandleHat)

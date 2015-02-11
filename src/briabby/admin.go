@@ -7,7 +7,6 @@ import (
 	"mime/multipart"
 	"net/http"
 	"os"
-	"strconv"
 	"strings"
 	"text/template"
 	"time"
@@ -80,22 +79,20 @@ func HandleAdminLogin(w http.ResponseWriter, r *http.Request) {
 }
 
 func fnHandleSaveItem(w http.ResponseWriter, r *http.Request) {
-	var item *HatItem
+	var (
+		item *ProtoItem
+		err  error
+	)
 
 	id := r.FormValue("item_id")
 	if len(id) == 0 || id == "0" {
-		item = &HatItem{}
+		item = &ProtoItem{}
 	} else {
-		intid, _ := strconv.Atoi(id)
-		item = FindItemByID(intid)
-		if item == nil {
+		if item, err = store.FindItem(id); err != nil {
 			io.WriteString(w, errorJsonResp)
 			return
 		}
-
-		itemlock.Lock()
-		defer itemlock.Unlock()
-		item.ID = intid
+		item.ID = id
 	}
 
 	item.Name = r.FormValue("item_name")
@@ -103,32 +100,30 @@ func fnHandleSaveItem(w http.ResponseWriter, r *http.Request) {
 	item.PaypalBtn = r.FormValue("item_paypal")
 	item.ImageSmall = r.FormValue("item_small_image_url")
 	item.ImageBig = r.FormValue("item_big_image_url")
-	item.Promotion = r.FormValue("item_promotion")
 	item.Category = r.FormValue("item_category")
 	item.Price = strings.Split(r.FormValue("item_price"), ",")
-	if item.ID == 0 {
-		SaveItem(item)
-	} else {
-		FlushFile()
+
+	if r.FormValue("item_promotion") == "on" {
+		item.Promotion = 1
+	}
+
+	if err = store.SaveItem(item); err != nil {
+		io.WriteString(w, errorJsonResp)
+		return
 	}
 	io.WriteString(w, okJsonResp)
 }
 
 func fnHandleDelItem(w http.ResponseWriter, r *http.Request) {
-	id, err := strconv.Atoi(r.FormValue("id"))
-	if err == nil {
-		DelItem(id)
-	}
+	id := r.FormValue("id")
+	store.DelItem(id)
 	fnHandleListItem(w, r)
 }
 
 func fnHandleEditItem(w http.ResponseWriter, r *http.Request) {
-	id, err := strconv.Atoi(r.FormValue("id"))
+	item, err := store.FindItem(r.FormValue("id"))
 	if err != nil {
-		return
-	}
-	item := FindItemByID(id)
-	if item == nil {
+		fmt.Println(err)
 		return
 	}
 	t, err := template.ParseFiles("../data/babegarden/template/admin_item.html")
@@ -142,24 +137,25 @@ func fnHandleEditItem(w http.ResponseWriter, r *http.Request) {
 }
 
 func fnHandleListItem(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("xxx")
 	t, err := template.ParseFiles("../data/babegarden/template/admin_item_list.html")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	ds := &HatDataSet{
-		ItemList: hatitemarray,
+	var items []ProtoItem
+	if items, err = store.All(); err != nil {
+		fmt.Println(err)
+		return
 	}
 
-	itemlock.Lock()
-	defer itemlock.Unlock()
+	ds := &HatDataSet{
+		ItemList: items,
+	}
 
 	if err = t.Execute(w, ds); err != nil {
 		return
 	}
-
 }
 
 func HandleAdminItem(w http.ResponseWriter, r *http.Request) {
@@ -171,7 +167,7 @@ func HandleAdminItem(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		item := &HatItem{}
+		item := &ProtoItem{}
 		if err = t.Execute(w, item); err != nil {
 			return
 		}
