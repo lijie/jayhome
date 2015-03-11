@@ -18,8 +18,10 @@ func HandleHat(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	cat := r.FormValue("id")
+
 	var items []ProtoItem
-	if items, err = store.FindItemByCat("hat"); err != nil {
+	if items, err = store.FindItemByCat(cat); err != nil {
 		fmt.Println(err)
 		return
 	}
@@ -61,7 +63,7 @@ func InitBriabby(prefix string) {
 		fmt.Printf("connect database ok\n")
 	}
 
-	http.HandleFunc(prefix+"/hat", HandleHat)
+	http.HandleFunc(prefix+"/cat", HandleHat)
 	http.HandleFunc(prefix+"/", HandleIndex)
 	InitAdmin(prefix)
 }
