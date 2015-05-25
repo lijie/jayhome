@@ -2,7 +2,7 @@
 {
 	"title": "OS",
 	"tag": "",
-	"summary": "operationg systems",
+	"summary": "morden operationg systems的笔记和习题",
 	"text": "../data/blog/md/os.txt",
 	"update": 0,
 	"time": 1432545533
@@ -10,7 +10,7 @@
 {
 	"title": "Go Internals",
 	"tag": "",
-	"summary": "Go",
+	"summary": "Go runtime的内部实现",
 	"text": "../data/blog/md/go_internals.txt",
 	"update": 0,
 	"time": 1432285582
@@ -18,7 +18,7 @@
 {
 	"title": "Effective Go",
 	"tag": "",
-	"summary": "Go",
+	"summary": "Go编程经验",
 	"text": "../data/blog/md/effective_go.txt",
 	"update": 0,
 	"time": 1401362269
@@ -40,14 +40,6 @@
 	"time": 1387207689
 },
 {
-	"title": "programming in Go",
-	"tag": "",
-	"summary": "Go编程的一些经验记录",
-	"text": "../data/blog/md/programming_in_go.txt",
-	"update": 0,
-	"time": 1387202751
-},
-{
 	"title": "计算机体系结构",
 	"tag": "",
 	"summary": "计算机体系结构 量化研究方法 读书笔记.",
@@ -62,30 +54,6 @@
 	"text": "../data/blog/md/head_first_statistics.txt",
 	"update": 0,
 	"time": 1387183532
-},
-{
-	"title": "Machine Learning in Action",
-	"tag": "",
-	"summary": "Machine Learning in Action 读书笔记.",
-	"text": "../data/blog/md/machine_learning_in_action.txt",
-	"update": 0,
-	"time": 1387183531
-},
-{
-	"title": "滕王阁序",
-	"tag": "",
-	"summary": "for test",
-	"text": "../data/blog/md/first.txt",
-	"update": 0,
-	"time": 1386264895
-},
-{
-	"title": "Test title2",
-	"tag": "",
-	"summary": "for test",
-	"text": "../data/blog/md/second.txt",
-	"update": 0,
-	"time": 1386260371
 }
 ]
 

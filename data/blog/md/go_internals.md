@@ -7,8 +7,7 @@
 1. slice在内存中是连续的
 
 2. append在slice的cap不够的情况下, 会分配新内存并copy老的slice到新内存
-具体的实现在runtime/slice.go的growslice()
-如果new_cap >= old_cap * 2 则之间增长到new_cap
+具体的实现在runtime/slice.go的growslice(). 如果new_cap >= old_cap * 2 则之间增长到new_cap
 else 如果old_cap<1024, 则反复double直到超过new_cap
 else 反复增加old_cap/4直到超过new_cap
 
@@ -21,28 +20,29 @@ else 反复增加old_cap/4直到超过new_cap
 
 #### Mutex
 
-// A Mutex is a mutual exclusion lock.
-// Mutexes can be created as part of other structures;
-// the zero value for a Mutex is an unlocked mutex.
-type Mutex struct {
 
-// 表示当前mutex的状态
-state int32
+	// A Mutex is a mutual exclusion lock.
+	// Mutexes can be created as part of other structures;
+	// the zero value for a Mutex is an unlocked mutex.
+	type Mutex struct {
 
-// 用于 runtime.AcquireSem
-sema  uint32
-}
+	// 表示当前mutex的状态
+	state int32
 
-const (
-// 表示当前 mutex已经被lock
-mutexLocked = 1 << iota // mutex is locked
-// 表示当前 mutex上有g被唤醒
-mutexWoken
-// 当前 mutex上有g在等待
-mutexWaiterShift = iota
-)
+	// 用于 runtime.AcquireSem
+	sema  uint32
+	}
 
-Mutex.Unlock()
+	const (
+	// 表示当前 mutex已经被lock
+	mutexLocked = 1 << iota // mutex is locked
+	// 表示当前 mutex上有g被唤醒
+	mutexWoken
+	// 当前 mutex上有g在等待
+	mutexWaiterShift = iota
+	)
+
+##### Mutex.Unlock()
 
 1. 首先清除mutexLock状态
 2. 如果当前没有g在mutex上等待, 就结束
@@ -50,7 +50,7 @@ Mutex.Unlock()
 4. 调用 runtime.AcqurieRelease 来唤醒一个正在睡眠的g
 
 
-Mutex.Lock()
+##### Mutex.Lock()
 
 1. 首先CompareAandSwap的atomic操作设置Lock状态, 成功就立即结束, 获得锁
 2. 如果已经被锁, 则需要等待, 等待的逻辑比较复杂
@@ -58,7 +58,7 @@ Mutex.Lock()
 则执行spin. spin的过程中, 如果当前有其它g也在wait此locker, 优先唤醒spin的g.
 4. spin完毕并且未获得锁, 则调用runtime.AcquireSem睡眠
 
-Mutex总结
+##### Mutex总结
 
 1. go的Mutex没有使用os相关的mutex实现, 不会直接syscall, 所以它的开销理论上要比pthread_mutex要小.
 2. 在条件允许的情况下, 支持spin.
@@ -96,19 +96,19 @@ semrelease
 
 ### channel
 
-type hchan struct {
-qcount   uint           // total data in the queue
-dataqsiz uint           // size of the circular queue
-buf      unsafe.Pointer // points to an array of dataqsiz elements
-elemsize uint16
-closed   uint32
-elemtype *_type // element type
-sendx    uint   // send index
-recvx    uint   // receive index
-recvq    waitq  // list of recv waiters
-sendq    waitq  // list of send waiters
-lock     mutex
-}
+	type hchan struct {
+	qcount   uint           // total data in the queue
+	dataqsiz uint           // size of the circular queue
+	buf      unsafe.Pointer // points to an array of dataqsiz elements
+	elemsize uint16
+	closed   uint32
+	elemtype *_type // element type
+	sendx    uint   // send index
+	recvx    uint   // receive index
+	recvq    waitq  // list of recv waiters
+	sendq    waitq  // list of send waiters
+	lock     mutex
+	}
 
 #### sync chan
 
@@ -120,15 +120,15 @@ goroutine 相关的函数实现大部分在
 runtime/proc1.go
 另外, runtime/proc.go 应该是go编译后程序真正的入口
 
-//生成新的goroutine并将其放到等待执行的队列中
-func newproc1() {
-  // 从local或者global gfreelist 里面分配一个g
-  gfget()
-  // new一个g
-  malg()
-  // 放到local或者global runqueue 等待运行
-  runqput()
-  }
+	//生成新的goroutine并将其放到等待执行的队列中
+	func newproc1() {
+	  // 从local或者global gfreelist 里面分配一个g
+	  gfget()
+	  // new一个g
+	  malg()
+	  // 放到local或者global runqueue 等待运行
+	  runqput()
+	}
 
 #### gopark
 
@@ -136,6 +136,5 @@ func newproc1() {
 
 ### reference
 
-A Manual for the Plan 9 assembler
-http://www.plan9.bell-labs.com/sys/doc/asm.html
+[A Manual for the Plan 9 assembler](http://www.plan9.bell-labs.com/sys/doc/asm.html)
 
