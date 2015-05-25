@@ -1,5 +1,13 @@
 [
 {
+	"title": "Go Internals",
+	"tag": "",
+	"summary": "Go",
+	"text": "../data/blog/md/go_internals.txt",
+	"update": 0,
+	"time": 1432285582
+},
+{
 	"title": "Effective Go",
 	"tag": "",
 	"summary": "Go",
