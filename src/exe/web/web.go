@@ -1,13 +1,16 @@
 package main
 
-import "net/http"
-import "io"
-import "log"
-import "blog"
-import "reader"
-import "fmt"
-import "flag"
-import "sync"
+import (
+	"flag"
+	"fmt"
+	"github.com/lijie/go/sendpaste"
+	"github.com/lijie/jayhome/src/blog"
+	"github.com/lijie/jayhome/src/reader"
+	"io"
+	"log"
+	"net/http"
+	"sync"
+)
 
 var bb *blog.Blog
 var blogMutex sync.Mutex
@@ -53,6 +56,9 @@ func main() {
 	http.HandleFunc("/b/", BlogServer)
 	http.HandleFunc("/r/", ReaderServer)
 	http.HandleFunc("/hello", HelloServer)
+
+	s := sendpaste.NewPasteServer()
+	go s.RunWithHttp(":20003", "/paste", http.DefaultServeMux)
 
 	err := http.ListenAndServe(fmt.Sprintf(":%d", *port), nil)
 	if err != nil {
